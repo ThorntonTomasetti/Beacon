@@ -4,7 +4,9 @@ Beacon is a Revit plug-in for structural engineers that provides quick, high lev
 ![Beacon Main Window](Beacon/Resources/MainWindow.png)
 
 ## Getting started
-1. Download and run Beacon msi or download zip for manual install
+1. Download and run Beacon msi or download ZIP for manual install
+**IMPORTANT:** When installing via the install.bat file from the ZIP file, on some systems, the content of the ZIP file is blocked and the plugin will fail to run. To resolve, right click on the contents of C:\ProgramData\Autodesk\Revit\Addins\2018\Beacon (replace 2018 with Revit version), select **Properties**, and click on the **Unblock** button if it is present in the lower right hand corner of the **General** tab in the properties dialog.
+
 2. Run Beacon plug-in under the Revit Add-ins tab
 
 ## How it works
