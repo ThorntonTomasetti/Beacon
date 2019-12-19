@@ -1,0 +1,9 @@
+If you see a file cannot open error when running the tool in Revit, your system blocked the Beacon dll because it was a manual copy. Right click and go to properties on all DLL files in the beacon directory, and unblocked the file.
+
+Batch File Install:
+	1) Run install.bat to install for Revit 2018, 2019, and 2020.
+	2) Restart Revit
+
+Manual Install:
+	1) Copy all files in Revit folder (ie. Revit2018) to Revit plugin folder (ie. C:\ProgramData\Autodesk\Revit\Addins\2018).
+	2) Restart Revit.
