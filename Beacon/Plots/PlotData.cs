@@ -43,11 +43,66 @@ namespace Beacon
         }
 
         public string Label { get; set; }
-        public double Steel { get; set; }
-        public double Concrete { get; set; }
-        public double Rebar { get; set; }
-        public double Timber { get; set; }
-        public double Unknown { get; set; }
+        private double steel;
+        public double Steel
+        {
+            get
+            {
+                return steel;
+            }
+            set
+            {
+                steel = Math.Round(value, 2);
+            }
+        }
+        private double concrete;
+        public double Concrete
+        {
+            get
+            {
+                return concrete;
+            }
+            set
+            {
+                concrete = Math.Round(value, 2);
+            }
+        }
+        private double rebar;
+        public double Rebar
+        {
+            get
+            {
+                return rebar;
+            }
+            set
+            {
+                rebar = Math.Round(value, 2);
+            }
+        }
+        private double timber;
+        public double Timber
+        {
+            get
+            {
+                return timber;
+            }
+            set
+            {
+                timber = Math.Round(value, 2);
+            }
+        }
+        private double unknown;
+        public double Unknown
+        {
+            get
+            {
+                return unknown;
+            }
+            set
+            {
+                unknown = Math.Round(value, 2);
+            }
+        }
         public double Elevation { get; set; }
     }
 
@@ -303,7 +358,7 @@ namespace Beacon
         {
             get
             {
-                return volume.ToString("N2") + " CF";
+                return volume.ToString("N0") + " CF";
             }
         }
 
@@ -329,7 +384,7 @@ namespace Beacon
         {
             get
             {
-                return density.ToString("N2") + " PCF";
+                return density.ToString("N0") + " PCF";
             }
         }
 
