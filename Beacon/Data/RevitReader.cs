@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 using Autodesk.Revit.DB;
 
@@ -68,11 +69,18 @@ namespace Beacon
             var elements = collector.WherePasses(filter).ToElements();
             foreach (var element in elements)
             {
-                if (element is Phase)
+                try
                 {
-                    bool export = false;
-                    if (element.Name.ToUpper().Contains("NEW")) export = true;
-                    this.a_revitPhases.Add(new RevitPhase(element.Name, export));
+                    if (element is Phase)
+                    {
+                        bool export = false;
+                        if (element.Name.ToUpper().Contains("NEW")) export = true;
+                        this.a_revitPhases.Add(new RevitPhase(element.Name, export));
+                    }
+                }
+                catch (Exception e)
+                {
+                    ShowElementErrorMessage(element, e);
                 }
             }
         }
@@ -99,11 +107,18 @@ namespace Beacon
             var unSortedLevels = new List<Tuple<double, string>>();
             foreach (var element in elements)
             {
-                if (element is Level)
+                try
                 {
-                    var level = element as Level;
-                    var levelWork = new Tuple<double, string>(level.ProjectElevation, level.Name);
-                    unSortedLevels.Add(levelWork);
+                    if (element is Level)
+                    {
+                        var level = element as Level;
+                        var levelWork = new Tuple<double, string>(level.ProjectElevation, level.Name);
+                        unSortedLevels.Add(levelWork);
+                    }
+                }
+                catch (Exception e)
+                {
+                    ShowElementErrorMessage(element, e);
                 }
             }
             // Sort level data by elevation, bottom to top
@@ -131,28 +146,35 @@ namespace Beacon
             var elements = collector.WherePasses(filter).ToElements();
             foreach (var element in elements)
             {
-                if (element is FamilyInstance && CheckElementPhase(element))
+                try
                 {
-                    var revitElement = new RevitElement();
-                    revitElement.Category = RevitCategory.Framing;
-                    revitElement.Id = element.Id.ToString();
-                    revitElement.Name = element.Name;
+                    if (element is FamilyInstance && CheckElementPhase(element))
+                    {
+                        var revitElement = new RevitElement();
+                        revitElement.Category = RevitCategory.Framing;
+                        revitElement.Id = element.Id.ToString();
+                        revitElement.Name = element.Name;
 
-                    var elementLevel = element.GetParameters("Reference Level");
-                    Level levelElement = elementLevel.Count() > 0 ? a_doc.GetElement(elementLevel[0].AsElementId()) as Level : null;
-                    revitElement.AssociatedLevel = levelElement != null ? levelElement.Name : a_unknownLevelName;
-                    revitElement.AssociatedElevation = levelElement != null ? levelElement.ProjectElevation : a_unknownLevelElevation;
-                    revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
+                        var elementLevel = element.GetParameters("Reference Level");
+                        Level levelElement = elementLevel.Count() > 0 ? a_doc.GetElement(elementLevel[0].AsElementId()) as Level : null;
+                        revitElement.AssociatedLevel = levelElement != null ? levelElement.Name : a_unknownLevelName;
+                        revitElement.AssociatedElevation = levelElement != null ? levelElement.ProjectElevation : a_unknownLevelElevation;
+                        revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
 
-                    var elementVolume = element.GetParameters("Volume");
-                    revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
-                    var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
-                    revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
-                    revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
-                    double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
-                    revitElement.Density = density;
+                        var elementVolume = element.GetParameters("Volume");
+                        revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
+                        var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
+                        revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
+                        revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
+                        double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
+                        revitElement.Density = density;
 
-                    a_revitElementData.Add(revitElement);
+                        a_revitElementData.Add(revitElement);
+                    }
+                }
+                catch (Exception e)
+                {
+                    ShowElementErrorMessage(element, e);
                 }
             }
 
@@ -170,42 +192,49 @@ namespace Beacon
             var elements = collector.WherePasses(filter).ToElements();
             foreach (var element in elements)
             {
-                if (element is FamilyInstance && CheckElementPhase(element))
+                try
                 {
-                    var revitElement = new RevitElement();
-                    revitElement.Category = RevitCategory.Column;
-                    revitElement.Id = element.Id.ToString();
-                    revitElement.Name = element.Name;
-
-                    var baseLevelParam = element.get_Parameter(BuiltInParameter.FAMILY_BASE_LEVEL_PARAM);
-                    Level baseLevel = baseLevelParam != null ? a_doc.GetElement(baseLevelParam.AsElementId()) as Level : null;
-                    revitElement.AssociatedLevel = baseLevel != null ? baseLevel.Name : a_unknownLevelName;
-                    revitElement.AssociatedElevation = baseLevel != null ? baseLevel.ProjectElevation : a_unknownLevelElevation;
-                    revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
-
-                    var elementVolume = element.GetParameters("Volume");
-                    revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
-                    var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
-                    revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
-                    revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
-                    double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
-                    revitElement.Density = density;
-
-                    // Split Column by Levels
-                    var colCurve = CreateColumnCurve(element as FamilyInstance);
-                    if (colCurve != null && a_levelData.Count > 0)
+                    if (element is FamilyInstance && CheckElementPhase(element))
                     {
-                        var basePt = colCurve.GetEndPoint(0);
-                        var topPt = colCurve.GetEndPoint(1);
-                        var trueBel = basePt.Z;
-                        var trueTel = topPt.Z;
-                        var colHeight = trueTel - trueBel;
-                        SplitByLevels(revitElement, trueBel, trueTel, colHeight);
+                        var revitElement = new RevitElement();
+                        revitElement.Category = RevitCategory.Column;
+                        revitElement.Id = element.Id.ToString();
+                        revitElement.Name = element.Name;
+
+                        var baseLevelParam = element.get_Parameter(BuiltInParameter.FAMILY_BASE_LEVEL_PARAM);
+                        Level baseLevel = baseLevelParam != null ? a_doc.GetElement(baseLevelParam.AsElementId()) as Level : null;
+                        revitElement.AssociatedLevel = baseLevel != null ? baseLevel.Name : a_unknownLevelName;
+                        revitElement.AssociatedElevation = baseLevel != null ? baseLevel.ProjectElevation : a_unknownLevelElevation;
+                        revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
+
+                        var elementVolume = element.GetParameters("Volume");
+                        revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
+                        var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
+                        revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
+                        revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
+                        double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
+                        revitElement.Density = density;
+
+                        // Split Column by Levels
+                        var colCurve = CreateColumnCurve(element as FamilyInstance);
+                        if (colCurve != null && a_levelData.Count > 0)
+                        {
+                            var basePt = colCurve.GetEndPoint(0);
+                            var topPt = colCurve.GetEndPoint(1);
+                            var trueBel = basePt.Z;
+                            var trueTel = topPt.Z;
+                            var colHeight = trueTel - trueBel;
+                            SplitByLevels(revitElement, trueBel, trueTel, colHeight);
+                        }
+                        else
+                        {
+                            a_revitElementData.Add(revitElement);
+                        }
                     }
-                    else
-                    {
-                        a_revitElementData.Add(revitElement);
-                    }
+                }
+                catch (Exception e)
+                {
+                    ShowElementErrorMessage(element, e);
                 }
             }
 
@@ -228,93 +257,100 @@ namespace Beacon
             var elements = collector.WherePasses(filter).ToElements();
             foreach (var element in elements)
             {
-                if (element is Floor && CheckElementPhase(element))
+                try
                 {
-                    Floor floor = element as Floor;
-                    var revitElement = new RevitElement();
-                    revitElement.Category = RevitCategory.Floor;
-                    revitElement.Id = element.Id.ToString();
-                    revitElement.Name = element.Name;
-
-                    var floorLevelid = floor.LevelId;
-                    Level levelElement = a_doc.GetElement(floorLevelid) as Level;
-                    revitElement.AssociatedLevel = levelElement != null ? levelElement.Name : a_unknownLevelName;
-                    revitElement.AssociatedElevation = levelElement != null ? levelElement.ProjectElevation : a_unknownLevelElevation;
-                    revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
-
-                    var floorArea = element.GetParameters("Area");
-                    revitElement.Area = floorArea.Count() > 0 ? floorArea[0].AsDouble() : 0.0;
-
-                    var elementVolume = element.GetParameters("Volume");
-                    revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
-
-                    // Look for metal deck
-                    var floorTypeId = element.GetTypeId();
-                    var floorType = a_doc.GetElement(floorTypeId) as HostObjAttributes;
-                    if (floorType != null)
+                    if (element is Floor && CheckElementPhase(element))
                     {
-                        var elementCompoundStructure = floorType.GetCompoundStructure();
-                        var compoundStructureLayers = elementCompoundStructure.GetLayers();
-                        foreach (var elementLayer in compoundStructureLayers)
+                        Floor floor = element as Floor;
+                        var revitElement = new RevitElement();
+                        revitElement.Category = RevitCategory.Floor;
+                        revitElement.Id = element.Id.ToString();
+                        revitElement.Name = element.Name;
+
+                        var floorLevelid = floor.LevelId;
+                        Level levelElement = a_doc.GetElement(floorLevelid) as Level;
+                        revitElement.AssociatedLevel = levelElement != null ? levelElement.Name : a_unknownLevelName;
+                        revitElement.AssociatedElevation = levelElement != null ? levelElement.ProjectElevation : a_unknownLevelElevation;
+                        revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
+
+                        var floorArea = element.GetParameters("Area");
+                        revitElement.Area = floorArea.Count() > 0 ? floorArea[0].AsDouble() : 0.0;
+
+                        var elementVolume = element.GetParameters("Volume");
+                        revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
+
+                        // Look for metal deck
+                        var floorTypeId = element.GetTypeId();
+                        var floorType = a_doc.GetElement(floorTypeId) as HostObjAttributes;
+                        if (floorType != null)
                         {
-                            if (elementLayer.Function == MaterialFunctionAssignment.StructuralDeck)
+                            var elementCompoundStructure = floorType.GetCompoundStructure();
+                            var compoundStructureLayers = elementCompoundStructure.GetLayers();
+                            foreach (var elementLayer in compoundStructureLayers)
                             {
-                                var elementLayerDeck = a_doc.GetElement(elementLayer.DeckProfileId) as FamilySymbol;
-                                var elementLayerMaterial = a_doc.GetElement(elementLayer.MaterialId) as Material;
-                                if (elementLayerDeck != null && elementLayerMaterial != null)
+                                if (elementLayer.Function == MaterialFunctionAssignment.StructuralDeck)
                                 {
-                                    // hr = height of rib
-                                    var hrParam = elementLayerDeck.GetParameters("hr");
-                                    double hr = hrParam.Count() > 0 ? hrParam[0].AsDouble() : 0.0;
-                                    // wr = width of rib
-                                    var wrParam = elementLayerDeck.GetParameters("wr");
-                                    double wr = wrParam.Count() > 0 ? wrParam[0].AsDouble() : 0.0;
-                                    // rr = root of rib
-                                    var rrParam = elementLayerDeck.GetParameters("rr");
-                                    double rr = rrParam.Count() > 0 ? rrParam[0].AsDouble() : 0.0;
-                                    // Sr = width of rib
-                                    var srParam = elementLayerDeck.GetParameters("Sr");
-                                    double Sr = srParam.Count() > 0 ? srParam[0].AsDouble() : 0.0;
-                                    // Thickness
-                                    var thicknessParam = elementLayerDeck.GetParameters("Thickness");
-                                    double thickness = thicknessParam.Count() > 0 ? thicknessParam[0].AsDouble() : 0.0;
-                                    // Layer Density
-                                    double layerDensity = GetDensity(elementLayerMaterial);
-
-                                    if (revitElement.Area > 0 &&
-                                        Sr > 0 && hr > 0 && wr > 0 && rr > 0 && thickness > 0 && layerDensity > 0)
+                                    var elementLayerDeck = a_doc.GetElement(elementLayer.DeckProfileId) as FamilySymbol;
+                                    var elementLayerMaterial = a_doc.GetElement(elementLayer.MaterialId) as Material;
+                                    if (elementLayerDeck != null && elementLayerMaterial != null)
                                     {
-                                        revitElement.Volume = revitElement.Volume - (revitElement.Area * hr / 2);
+                                        // hr = height of rib
+                                        var hrParam = elementLayerDeck.GetParameters("hr");
+                                        double hr = hrParam.Count() > 0 ? hrParam[0].AsDouble() : 0.0;
+                                        // wr = width of rib
+                                        var wrParam = elementLayerDeck.GetParameters("wr");
+                                        double wr = wrParam.Count() > 0 ? wrParam[0].AsDouble() : 0.0;
+                                        // rr = root of rib
+                                        var rrParam = elementLayerDeck.GetParameters("rr");
+                                        double rr = rrParam.Count() > 0 ? rrParam[0].AsDouble() : 0.0;
+                                        // Sr = width of rib
+                                        var srParam = elementLayerDeck.GetParameters("Sr");
+                                        double Sr = srParam.Count() > 0 ? srParam[0].AsDouble() : 0.0;
+                                        // Thickness
+                                        var thicknessParam = elementLayerDeck.GetParameters("Thickness");
+                                        double thickness = thicknessParam.Count() > 0 ? thicknessParam[0].AsDouble() : 0.0;
+                                        // Layer Density
+                                        double layerDensity = GetDensity(elementLayerMaterial);
 
-                                        double flange = Sr - wr;
-                                        double rib = rr;
-                                        double web = Math.Sqrt(Math.Pow(hr, 2) + Math.Pow(((wr - rr) / 2), 2));
-                                        double deckWidthFlatten = flange + rib + (2 * web);
+                                        if (revitElement.Area > 0 &&
+                                            Sr > 0 && hr > 0 && wr > 0 && rr > 0 && thickness > 0 && layerDensity > 0)
+                                        {
+                                            revitElement.Volume = revitElement.Volume - (revitElement.Area * hr / 2);
 
-                                        double weightOfOneFootOfDeck = deckWidthFlatten * thickness * 1 * layerDensity;
-                                        double deckPsf = weightOfOneFootOfDeck / (Sr * 1);
-                                        double weightOfDeck = revitElement.Area * deckPsf;
-                                        double volumeOfDeck = weightOfDeck / layerDensity;
+                                            double flange = Sr - wr;
+                                            double rib = rr;
+                                            double web = Math.Sqrt(Math.Pow(hr, 2) + Math.Pow(((wr - rr) / 2), 2));
+                                            double deckWidthFlatten = flange + rib + (2 * web);
 
-                                        string deckName = elementLayerDeck.FamilyName + " - " + elementLayerDeck.Name;
-                                        RevitElement floorDeck = new RevitElement(
-                                            revitElement.Category, revitElement.Id, deckName, revitElement.AssociatedLevel, revitElement.AssociatedElevation, volumeOfDeck,
-                                            elementLayerMaterial.Name, GetMaterialType(elementLayerMaterial), layerDensity);
-                                        floorDeck.Area = revitElement.Area;
-                                        a_revitElementData.Add(floorDeck);
+                                            double weightOfOneFootOfDeck = deckWidthFlatten * thickness * 1 * layerDensity;
+                                            double deckPsf = weightOfOneFootOfDeck / (Sr * 1);
+                                            double weightOfDeck = revitElement.Area * deckPsf;
+                                            double volumeOfDeck = weightOfDeck / layerDensity;
+
+                                            string deckName = elementLayerDeck.FamilyName + " - " + elementLayerDeck.Name;
+                                            RevitElement floorDeck = new RevitElement(
+                                                revitElement.Category, revitElement.Id, deckName, revitElement.AssociatedLevel, revitElement.AssociatedElevation, volumeOfDeck,
+                                                elementLayerMaterial.Name, GetMaterialType(elementLayerMaterial), layerDensity);
+                                            floorDeck.Area = revitElement.Area;
+                                            a_revitElementData.Add(floorDeck);
+                                        }
                                     }
                                 }
                             }
                         }
+
+                        var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
+                        revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
+                        revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
+                        double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
+                        revitElement.Density = density;
+
+                        a_revitElementData.Add(revitElement);
                     }
-
-                    var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
-                    revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
-                    revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
-                    double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
-                    revitElement.Density = density;
-
-                    a_revitElementData.Add(revitElement);
+                }
+                catch (Exception e)
+                {
+                    ShowElementErrorMessage(element, e);
                 }
             }
 
@@ -337,43 +373,50 @@ namespace Beacon
             var elements = collector.WherePasses(filter).ToElements();
             foreach (var element in elements)
             {
-                if (element is Wall && CheckElementPhase(element))
+                try
                 {
-                    var revitElement = new RevitElement();
-                    revitElement.Category = RevitCategory.Wall;
-                    revitElement.Id = element.Id.ToString();
-                    revitElement.Name = element.Name;
-
-                    var wallBaseConstraintParam = element.get_Parameter(BuiltInParameter.WALL_BASE_CONSTRAINT);
-                    Level wallBaseConstraintLevel = wallBaseConstraintParam != null ? a_doc.GetElement(wallBaseConstraintParam.AsElementId()) as Level : null;
-                    revitElement.AssociatedLevel = wallBaseConstraintLevel != null ? wallBaseConstraintLevel.Name : a_unknownLevelName;
-                    revitElement.AssociatedElevation = wallBaseConstraintLevel != null ? wallBaseConstraintLevel.ProjectElevation : a_unknownLevelElevation;
-                    revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
-
-                    var elementVolume = element.GetParameters("Volume");
-                    revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
-                    var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
-                    revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
-                    revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
-                    double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
-                    revitElement.Density = density;
-
-                    // Split Wall by Levels
-                    var unconnectedHeight = element.GetParameters("Unconnected Height"); // accounts for walls that have no top constraint assigned
-                    double wallHeight = unconnectedHeight.Count > 0 ? unconnectedHeight[0].AsDouble() : 0;
-                    if (wallBaseConstraintLevel != null && wallHeight > 0 && a_levelData.Count > 0)
+                    if (element is Wall && CheckElementPhase(element))
                     {
-                        var wallBottomElevation = wallBaseConstraintLevel.ProjectElevation;
-                        var wallBottomOffset = element.GetParameters("Base Offset");
-                        var baseOffset = wallBottomOffset.Count > 0 ? wallBottomOffset[0].AsDouble() : 0;
-                        double wtrueBel = wallBottomElevation + baseOffset; // true bottom elevation of wall with model offset applied
-                        double wtrueTel = wtrueBel + wallHeight; // true top elevation of wall
-                        SplitByLevels(revitElement, wtrueBel, wtrueTel, wallHeight);
+                        var revitElement = new RevitElement();
+                        revitElement.Category = RevitCategory.Wall;
+                        revitElement.Id = element.Id.ToString();
+                        revitElement.Name = element.Name;
+
+                        var wallBaseConstraintParam = element.get_Parameter(BuiltInParameter.WALL_BASE_CONSTRAINT);
+                        Level wallBaseConstraintLevel = wallBaseConstraintParam != null ? a_doc.GetElement(wallBaseConstraintParam.AsElementId()) as Level : null;
+                        revitElement.AssociatedLevel = wallBaseConstraintLevel != null ? wallBaseConstraintLevel.Name : a_unknownLevelName;
+                        revitElement.AssociatedElevation = wallBaseConstraintLevel != null ? wallBaseConstraintLevel.ProjectElevation : a_unknownLevelElevation;
+                        revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
+
+                        var elementVolume = element.GetParameters("Volume");
+                        revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
+                        var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
+                        revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
+                        revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
+                        double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
+                        revitElement.Density = density;
+
+                        // Split Wall by Levels
+                        var unconnectedHeight = element.GetParameters("Unconnected Height"); // accounts for walls that have no top constraint assigned
+                        double wallHeight = unconnectedHeight.Count > 0 ? unconnectedHeight[0].AsDouble() : 0;
+                        if (wallBaseConstraintLevel != null && wallHeight > 0 && a_levelData.Count > 0)
+                        {
+                            var wallBottomElevation = wallBaseConstraintLevel.ProjectElevation;
+                            var wallBottomOffset = element.GetParameters("Base Offset");
+                            var baseOffset = wallBottomOffset.Count > 0 ? wallBottomOffset[0].AsDouble() : 0;
+                            double wtrueBel = wallBottomElevation + baseOffset; // true bottom elevation of wall with model offset applied
+                            double wtrueTel = wtrueBel + wallHeight; // true top elevation of wall
+                            SplitByLevels(revitElement, wtrueBel, wtrueTel, wallHeight);
+                        }
+                        else
+                        {
+                            a_revitElementData.Add(revitElement);
+                        }
                     }
-                    else
-                    {
-                        a_revitElementData.Add(revitElement);
-                    }
+                }
+                catch (Exception e)
+                {
+                    ShowElementErrorMessage(element, e);
                 }
             }
 
@@ -398,41 +441,48 @@ namespace Beacon
             var elements = collector.WherePasses(filter).ToElements();
             foreach (var element in elements)
             {
-                if ((element is FamilyInstance || element is WallFoundation || element is Floor) && CheckElementPhase(element))
+                try
                 {
-                    var revitElement = new RevitElement();
-                    revitElement.Category = RevitCategory.Foundation;
-                    revitElement.Id = element.Id.ToString();
-                    revitElement.Name = element.Name;
-
-                    IList<Parameter> level = null;
-                    if (element is WallFoundation)
+                    if ((element is FamilyInstance || element is WallFoundation || element is Floor) && CheckElementPhase(element))
                     {
-                        var wallFoundation = element as WallFoundation;
-                        var wallElement = a_doc.GetElement(wallFoundation.WallId);
-                        var temp = wallElement.get_Parameter(BuiltInParameter.WALL_BASE_CONSTRAINT);
-                        IList<Parameter> first = new List<Parameter>();
-                        if (temp != null) first.Add(temp);
-                        level = first;
-                    }
-                    else
-                    {
-                        level = element.GetParameters("Level");
-                    }
-                    Level levelElement = level.Count() > 0 ? a_doc.GetElement(level[0].AsElementId()) as Level : null;
-                    revitElement.AssociatedLevel = levelElement != null ? levelElement.Name : a_unknownLevelName;
-                    revitElement.AssociatedElevation = levelElement != null ? levelElement.ProjectElevation : a_unknownLevelElevation;
-                    revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
-                    
-                    var elementVolume = element.GetParameters("Volume");
-                    revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
-                    var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
-                    revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
-                    revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
-                    double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
-                    revitElement.Density = density;
+                        var revitElement = new RevitElement();
+                        revitElement.Category = RevitCategory.Foundation;
+                        revitElement.Id = element.Id.ToString();
+                        revitElement.Name = element.Name;
 
-                    a_revitElementData.Add(revitElement);
+                        IList<Parameter> level = null;
+                        if (element is WallFoundation)
+                        {
+                            var wallFoundation = element as WallFoundation;
+                            var wallElement = a_doc.GetElement(wallFoundation.WallId);
+                            var temp = wallElement.get_Parameter(BuiltInParameter.WALL_BASE_CONSTRAINT);
+                            IList<Parameter> first = new List<Parameter>();
+                            if (temp != null) first.Add(temp);
+                            level = first;
+                        }
+                        else
+                        {
+                            level = element.GetParameters("Level");
+                        }
+                        Level levelElement = level.Count() > 0 ? a_doc.GetElement(level[0].AsElementId()) as Level : null;
+                        revitElement.AssociatedLevel = levelElement != null ? levelElement.Name : a_unknownLevelName;
+                        revitElement.AssociatedElevation = levelElement != null ? levelElement.ProjectElevation : a_unknownLevelElevation;
+                        revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
+
+                        var elementVolume = element.GetParameters("Volume");
+                        revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
+                        var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
+                        revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
+                        revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
+                        double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
+                        revitElement.Density = density;
+
+                        a_revitElementData.Add(revitElement);
+                    }
+                }
+                catch (Exception e)
+                {
+                    ShowElementErrorMessage(element, e);
                 }
             }
 
@@ -688,6 +738,15 @@ namespace Beacon
                 }
             }
             return retLine;
+        }
+
+        private void ShowElementErrorMessage(Element element, Exception e)
+        {
+            string elementId = element != null && element.Id != null ? element.Id.ToString() : "";
+            string message = "Error encountered while reading element:\n" + "Name=" + element.Name + "\nId=" + elementId + "\n\n";
+            message += "Error Message:\n" + e.Message + "\n\n";
+            message += "Stack Trace:\n" + e.StackTrace;
+            MessageBoxResult mResult = MessageBox.Show(message, "Recoverable Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }
