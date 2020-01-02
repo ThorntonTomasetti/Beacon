@@ -105,6 +105,10 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="ReachFramework" />
+    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug'">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2018'">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -115,6 +119,10 @@
     </Reference>
     <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2020'">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug'">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2018'">
@@ -129,6 +137,10 @@
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release'">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2018'">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -139,6 +151,10 @@
     </Reference>
     <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2020'">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release'">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2018'">
