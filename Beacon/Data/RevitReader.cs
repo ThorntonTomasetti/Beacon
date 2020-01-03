@@ -680,6 +680,11 @@ namespace Beacon
                 var densityParam = structuralAsset.GetParameters("Density");
                 double FromMetricToImperialUnitWeight = 2.20462; //coefficient of converting unit weight from metric unit (kg/ft^3) to imperial unit (lb/ft^3)
                 density = densityParam.Count() > 0 ? densityParam[0].AsDouble() * FromMetricToImperialUnitWeight : 0.0;
+                if (density == 0.0)
+                {
+                    densityParam = structuralAsset.GetParameters("Unit weight");
+                    density = densityParam.Count() > 0 ? densityParam[0].AsDouble() * FromMetricToImperialUnitWeight : 0.0;
+                }
             }
             return density;
         }

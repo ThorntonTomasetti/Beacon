@@ -15,8 +15,11 @@ Global
 		Debug2020|Any CPU = Debug2020|Any CPU
 		Release|Any CPU = Release|Any CPU
 		Release2018|Any CPU = Release2018|Any CPU
+		Release2018Internal|Any CPU = Release2018Internal|Any CPU
 		Release2019|Any CPU = Release2019|Any CPU
+		Release2019Internal|Any CPU = Release2019Internal|Any CPU
 		Release2020|Any CPU = Release2020|Any CPU
+		Release2020Internal|Any CPU = Release2020Internal|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -31,18 +34,27 @@ Global
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2018|Any CPU.ActiveCfg = Release2018|Any CPU
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2018|Any CPU.Build.0 = Release2018|Any CPU
+		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2018Internal|Any CPU.ActiveCfg = Release2018Internal|Any CPU
+		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2018Internal|Any CPU.Build.0 = Release2018Internal|Any CPU
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2019|Any CPU.ActiveCfg = Release2019|Any CPU
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2019|Any CPU.Build.0 = Release2019|Any CPU
+		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2019Internal|Any CPU.ActiveCfg = Release2019Internal|Any CPU
+		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2019Internal|Any CPU.Build.0 = Release2019Internal|Any CPU
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2020|Any CPU.ActiveCfg = Release2020|Any CPU
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2020|Any CPU.Build.0 = Release2020|Any CPU
+		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2020Internal|Any CPU.ActiveCfg = Release2020Internal|Any CPU
+		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2020Internal|Any CPU.Build.0 = Release2020Internal|Any CPU
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Debug|Any CPU.ActiveCfg = Debug
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Debug2018|Any CPU.ActiveCfg = Debug
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Debug2019|Any CPU.ActiveCfg = Debug
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Debug2020|Any CPU.ActiveCfg = Debug
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release|Any CPU.ActiveCfg = Release
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2018|Any CPU.ActiveCfg = Release2018
+		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2018Internal|Any CPU.ActiveCfg = Release2018Internal
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2019|Any CPU.ActiveCfg = Release2019
+		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2019Internal|Any CPU.ActiveCfg = Release2019Internal
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2020|Any CPU.ActiveCfg = Release2020
+		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2020Internal|Any CPU.ActiveCfg = Release2020Internal
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
