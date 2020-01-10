@@ -280,14 +280,18 @@ namespace Beacon
                         revitElement.Volume = elementVolume.Count() > 0 ? elementVolume[0].AsDouble() : 0.0;
 
                         // Look for metal deck
+                        bool addRevitElement = true;
                         var floorTypeId = element.GetTypeId();
                         var floorType = a_doc.GetElement(floorTypeId) as HostObjAttributes;
                         if (floorType != null)
                         {
                             var elementCompoundStructure = floorType.GetCompoundStructure();
+                            int structuralLayerIndex = elementCompoundStructure.StructuralMaterialIndex;
                             var compoundStructureLayers = elementCompoundStructure.GetLayers();
-                            foreach (var elementLayer in compoundStructureLayers)
+                            bool allStructuralDecks = true;
+                            for (int i = 0; i < compoundStructureLayers.Count; i++)
                             {
+                                var elementLayer = compoundStructureLayers[i];
                                 if (elementLayer.Function == MaterialFunctionAssignment.StructuralDeck)
                                 {
                                     var elementLayerDeck = a_doc.GetElement(elementLayer.DeckProfileId) as FamilySymbol;
@@ -333,9 +337,24 @@ namespace Beacon
                                                 elementLayerMaterial.Name, GetMaterialType(elementLayerMaterial), layerDensity);
                                             floorDeck.Area = revitElement.Area;
                                             a_revitElementData.Add(floorDeck);
+
+                                            // Don't add revitElement if added here, avoid double counting and counting deck with full depth volume.
+                                            if (addRevitElement == true)
+                                            {
+                                                addRevitElement = structuralLayerIndex == i ? false : true;
+                                            }
                                         }
                                     }
                                 }
+                                else
+                                {
+                                    allStructuralDecks = false;
+                                }
+                            }
+
+                            if (allStructuralDecks == false && addRevitElement == false)
+                            {
+                                addRevitElement = true;
                             }
                         }
 
@@ -345,7 +364,7 @@ namespace Beacon
                         double density = framingStructuralMaterial != null ? GetDensity(framingStructuralMaterial) : 0.0;
                         revitElement.Density = density;
 
-                        a_revitElementData.Add(revitElement);
+                        if (addRevitElement) a_revitElementData.Add(revitElement);
                     }
                 }
                 catch (Exception e)
