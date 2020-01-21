@@ -9,8 +9,8 @@
              Title="Beacon" Height="900" Width="1500" Closing="Window_Closing">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="37*"/>
-            <ColumnDefinition Width="48*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="45*"/>
             <ColumnDefinition Width="15*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -40,7 +40,7 @@
         </Grid>
 
         <TabControl Grid.Column="0" Grid.Row="0" Grid.RowSpan="9" Margin="10">
-            <TabItem Header="Steel">
+            <TabItem Name="SteelTab" Header="Steel" GotFocus="SteelTab_GotFocus">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"></RowDefinition>
@@ -62,6 +62,13 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Category" Binding="{Binding Category}" IsReadOnly="True" />
                             <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" IsReadOnly="True"/>
+                            <DataGridTemplateColumn Header="Volume Factor">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Path=VolumeFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="TextBox_LostFocus" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Volume" Binding="{Binding VolumeString}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Density" Binding="{Binding DensityString}" IsReadOnly="True"/>
                             <DataGridTemplateColumn Header="GWP Type">
@@ -82,7 +89,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Concrete">
+            <TabItem Name="ConcreteTab" Header="Concrete" GotFocus="ConcreteTab_GotFocus">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"></RowDefinition>
@@ -104,6 +111,13 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Category" Binding="{Binding Category}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" IsReadOnly="True"/>
+                            <DataGridTemplateColumn Header="Volume Factor">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Path=VolumeFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="TextBox_LostFocus" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Volume" Binding="{Binding VolumeString}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Density" Binding="{Binding DensityString}" IsReadOnly="True"/>
                             <DataGridTemplateColumn Header="GWP Type">
@@ -124,7 +138,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Timber">
+            <TabItem Name="TimberTab" Header="Timber" GotFocus="TimberTab_GotFocus">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"></RowDefinition>
@@ -146,6 +160,13 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Category" Binding="{Binding Category}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" IsReadOnly="True"/>
+                            <DataGridTemplateColumn Header="Volume Factor">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Path=VolumeFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="TextBox_LostFocus" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Volume" Binding="{Binding VolumeString}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Density" Binding="{Binding DensityString}" IsReadOnly="True"/>
                             <DataGridTemplateColumn Header="GWP Type">
@@ -166,7 +187,7 @@
                     </DataGrid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Unknown" Name="UnknownTab" ToolTip="Bold if there are elements with undefined material or material with zero density.">
+            <TabItem Header="Unknown" Name="UnknownTab" ToolTip="Bold if there are elements with undefined material or material with zero density." GotFocus="UnknownTab_GotFocus">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="5*"></RowDefinition>
@@ -188,6 +209,13 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Category" Binding="{Binding Category}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" IsReadOnly="True"/>
+                            <DataGridTemplateColumn Header="Volume Factor">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Text="{Binding Path=VolumeFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="TextBox_LostFocus" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
                             <DataGridTextColumn Header="Volume" Binding="{Binding VolumeString}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Density" Binding="{Binding DensityString}" IsReadOnly="True"/>
                             <DataGridTemplateColumn Header="GWP Type">

@@ -40,6 +40,11 @@ namespace Beacon
         private bool a_isInitialing = true;
         private double a_totalArea = 0.0;
 
+        private bool a_SteelTabFirstFocus = true;
+        private bool a_ConcreteTabFirstFocus = true;
+        private bool a_TimberTabFirstFocus = true;
+        private bool a_UnknownTabFirstFocus = true;
+
         /// <summary>
         /// Beacon main UI
         /// </summary>
@@ -94,6 +99,7 @@ namespace Beacon
             a_UnknownGwpDataList.Clear();
             a_ConcreteGwpDataList.Clear();
             BuildGwpData(true, true, true, true);
+            RestoreGwpData();
             ConcreteGWPDataGrid.ItemsSource = a_ConcreteGwpDataList;
             SteelGWPDataGrid.ItemsSource = a_SteelGwpDataList;
             TimberGWPDataGrid.ItemsSource = a_TimberGwpDataList;
@@ -196,6 +202,59 @@ namespace Beacon
         }
 
         /// <summary>
+        /// Restore saved user inputs.
+        /// </summary>
+        private void RestoreGwpData()
+        {
+            foreach (var gwpData in a_ConcreteGwpDataList)
+            {
+                GwpData savedGwpData = GetSavedGwpSetting(gwpData, Settings.Default.SavedGwpsConcrete);
+                if (savedGwpData != null)
+                {
+                    gwpData.GwpSelectedIndex = savedGwpData.GwpSelectedIndex;
+                    gwpData.Gwp = savedGwpData.Gwp;
+                    gwpData.VolumeFactor = savedGwpData.VolumeFactor;
+                    gwpData.RebarWeightMultiplier = savedGwpData.RebarWeightMultiplier;
+                    gwpData.RebarWeight = savedGwpData.RebarWeight;
+                    gwpData.RebarGwp = savedGwpData.RebarGwp;
+                }
+            }
+
+            foreach (var gwpData in a_SteelGwpDataList)
+            {
+                GwpData savedGwpData = GetSavedGwpSetting(gwpData, Settings.Default.SavedGwpsSteel);
+                if (savedGwpData != null)
+                {
+                    gwpData.GwpSelectedIndex = savedGwpData.GwpSelectedIndex;
+                    gwpData.Gwp = savedGwpData.Gwp;
+                    gwpData.VolumeFactor = savedGwpData.VolumeFactor;
+                }
+            }
+
+            foreach (var gwpData in a_TimberGwpDataList)
+            {
+                GwpData savedGwpData = GetSavedGwpSetting(gwpData, Settings.Default.SavedGwpsTimber);
+                if (savedGwpData != null)
+                {
+                    gwpData.GwpSelectedIndex = savedGwpData.GwpSelectedIndex;
+                    gwpData.Gwp = savedGwpData.Gwp;
+                    gwpData.VolumeFactor = savedGwpData.VolumeFactor;
+                }
+            }
+
+            foreach (var gwpData in a_UnknownGwpDataList)
+            {
+                GwpData savedGwpData = GetSavedGwpSetting(gwpData, Settings.Default.SavedGwpsUnknown);
+                if (savedGwpData != null)
+                {
+                    gwpData.GwpSelectedIndex = savedGwpData.GwpSelectedIndex;
+                    gwpData.Gwp = savedGwpData.Gwp;
+                    gwpData.VolumeFactor = savedGwpData.VolumeFactor;
+                }
+            }
+        }
+
+        /// <summary>
         /// Group RevitElements into GwpData by Category and Material Name
         /// </summary>
         /// <param name="setConcrete">Process Concrete?</param>
@@ -215,6 +274,7 @@ namespace Beacon
                             if (gwpConcreteDataList.Count() == 0)
                             {
                                 GwpData gwpData = new GwpData(revitElement.Category, revitElement.MaterialName);
+                                gwpData.RevitElements.Add(revitElement);
                                 if (revitElement.Category == RevitCategory.Floor)
                                 {
                                     gwpData.RebarEstimateBasis += revitElement.Area;
@@ -261,15 +321,6 @@ namespace Beacon
                                         gwpData.RebarWeightMultiplier = 0.0;
                                         break;
                                 }
-                                GwpData savedGwpData = GetSavedGwpSetting(gwpData, Settings.Default.SavedGwpsConcrete);
-                                if (savedGwpData != null)
-                                {
-                                    gwpData.GwpSelectedIndex = savedGwpData.GwpSelectedIndex;
-                                    gwpData.Gwp = savedGwpData.Gwp;
-                                    gwpData.RebarWeightMultiplier = savedGwpData.RebarWeightMultiplier;
-                                    gwpData.RebarWeight = savedGwpData.RebarWeight;
-                                    gwpData.RebarGwp = savedGwpData.RebarGwp;
-                                }
                                 gwpData.Volume += revitElement.Volume;
                                 gwpData.Density = revitElement.Density;
                                 a_ConcreteGwpDataList.Add(gwpData);
@@ -277,6 +328,7 @@ namespace Beacon
                             else
                             {
                                 var gwpConcreteData = gwpConcreteDataList.First();
+                                gwpConcreteData.RevitElements.Add(revitElement);
                                 gwpConcreteData.Volume += revitElement.Volume;
                                 double localRebarEstimateBasis = 0.0;
                                 if (revitElement.Category == RevitCategory.Floor)
@@ -322,12 +374,6 @@ namespace Beacon
                                     gwpData.GwpSelectedIndex = gwpData.SteelGwpList.FindIndex(x => x.Name == "HSS Steel");
                                     gwpData.GwpSelected = gwpData.SteelGwpList.First(x => x.Name == "HSS Steel");
                                     gwpData.Gwp = gwpData.GwpSelected.Value;
-                                }
-                                GwpData savedGwpData = GetSavedGwpSetting(gwpData, Settings.Default.SavedGwpsSteel);
-                                if (savedGwpData != null)
-                                {
-                                    gwpData.GwpSelectedIndex = savedGwpData.GwpSelectedIndex;
-                                    gwpData.Gwp = savedGwpData.Gwp;
                                 }
                                 gwpData.Volume += revitElement.Volume;
                                 gwpData.Density = revitElement.Density;
@@ -378,12 +424,6 @@ namespace Beacon
                                     gwpData.GwpSelected = gwpData.TimberGwpList.First(x => x.Name == "Laminated Veneer Lumber");
                                     gwpData.Gwp = gwpData.GwpSelected.Value;
                                 }
-                                GwpData savedGwpData = GetSavedGwpSetting(gwpData, Settings.Default.SavedGwpsTimber);
-                                if (savedGwpData != null)
-                                {
-                                    gwpData.GwpSelectedIndex = savedGwpData.GwpSelectedIndex;
-                                    gwpData.Gwp = savedGwpData.Gwp;
-                                }
                                 gwpData.Volume += revitElement.Volume;
                                 gwpData.Density = revitElement.Density;
                                 a_TimberGwpDataList.Add(gwpData);
@@ -403,12 +443,6 @@ namespace Beacon
                             {
                                 GwpData gwpData = new GwpData(revitElement.Category, revitElement.MaterialName);
                                 gwpData.PopulateAllGwpList();
-                                GwpData savedGwpData = GetSavedGwpSetting(gwpData, Settings.Default.SavedGwpsUnknown);
-                                if (savedGwpData != null)
-                                {
-                                    gwpData.GwpSelectedIndex = savedGwpData.GwpSelectedIndex;
-                                    gwpData.Gwp = savedGwpData.Gwp;
-                                }
                                 gwpData.Volume += revitElement.Volume;
                                 gwpData.Density = revitElement.Density;
                                 a_UnknownGwpDataList.Add(gwpData);
@@ -453,8 +487,11 @@ namespace Beacon
                         var steelGwpList = a_SteelGwpDataList.Where(x => x.Category == revitElement.Category && x.MaterialName == revitElement.MaterialName);
                         if (steelGwpList.Count() == 1)
                         {
-                            GwpData gwpData = steelGwpList.First();                            
-                            steelEC = gwpData.Gwp * (revitElement.Weight / 2000);
+                            GwpData gwpData = steelGwpList.First();
+                            revitElement.VolumeFactor = gwpData.VolumeFactor;
+                            revitElement.FactoredVolume = revitElement.Volume * gwpData.VolumeFactor;
+                            revitElement.FactoredWeight = revitElement.FactoredVolume * revitElement.Density;
+                            steelEC = gwpData.Gwp * (revitElement.FactoredWeight / 2000);
                             revitElement.GwpType = gwpData.Gwp == gwpData.GwpSelected.Value ? gwpData.GwpSelected.Name : "User Input";
                             revitElement.Gwp = gwpData.Gwp;
                             revitElement.EmbodiedCarbon = steelEC;
@@ -466,7 +503,10 @@ namespace Beacon
                         {
                             // Concrete
                             GwpData gwpData = concreteGwpList.First();
-                            concreteEC = gwpData.Gwp * (revitElement.Volume / 27);
+                            revitElement.VolumeFactor = gwpData.VolumeFactor;
+                            revitElement.FactoredVolume = revitElement.Volume * gwpData.VolumeFactor;
+                            revitElement.FactoredWeight = revitElement.FactoredVolume * revitElement.Density;
+                            concreteEC = gwpData.Gwp * (revitElement.FactoredVolume / 27);
                             revitElement.GwpType = gwpData.Gwp == gwpData.GwpSelected.Value ? gwpData.GwpSelected.Name : "User Input";
                             revitElement.Gwp = gwpData.Gwp;
                             revitElement.EmbodiedCarbon = concreteEC;
@@ -475,11 +515,13 @@ namespace Beacon
                             revitElement.RebarMultiplier = gwpData.RebarWeightMultiplier;
                             if (revitElement.Category == RevitCategory.Floor)
                             {
-                                revitElement.RebarWeight = gwpData.RebarWeightMultiplier * revitElement.Area;
+                                double rebarWeight = gwpData.VolumeFactor * gwpData.RebarWeightMultiplier * revitElement.Area;
+                                revitElement.RebarWeight = (rebarWeight / gwpData.GetTotalRebarWeight()) * gwpData.RebarWeight;
                             }
                             else
                             {
-                                revitElement.RebarWeight = gwpData.RebarWeightMultiplier * revitElement.Volume / 27;
+                                double rebarWeight = gwpData.VolumeFactor * gwpData.RebarWeightMultiplier * revitElement.Volume / 27;
+                                revitElement.RebarWeight = (rebarWeight / gwpData.GetTotalRebarWeight()) * gwpData.RebarWeight;
                             }
                             revitElement.RebarGwp = gwpData.RebarGwp;
                             revitElement.RebarEmbodiedCarbon = gwpData.RebarGwp * (revitElement.RebarWeight / 2000);
@@ -502,7 +544,10 @@ namespace Beacon
                         if (timberGwpList.Count() == 1)
                         {
                             GwpData gwpData = timberGwpList.First();
-                            timberEC = gwpData.Gwp * (revitElement.Volume / 27);
+                            revitElement.VolumeFactor = gwpData.VolumeFactor;
+                            revitElement.FactoredVolume = revitElement.Volume * gwpData.VolumeFactor;
+                            revitElement.FactoredWeight = revitElement.FactoredVolume * revitElement.Density;
+                            timberEC = gwpData.Gwp * (revitElement.FactoredVolume / 27);
                             revitElement.GwpType = gwpData.Gwp == gwpData.GwpSelected.Value ? gwpData.GwpSelected.Name : "User Input";
                             revitElement.Gwp = gwpData.Gwp;
                             revitElement.EmbodiedCarbon = timberEC;
@@ -513,10 +558,13 @@ namespace Beacon
                         if (unknownGwpList.Count() == 1)
                         {
                             GwpData gwpData = unknownGwpList.First();
+                            revitElement.VolumeFactor = gwpData.VolumeFactor;
+                            revitElement.FactoredVolume = revitElement.Volume * gwpData.VolumeFactor;
+                            revitElement.FactoredWeight = revitElement.FactoredVolume * revitElement.Density;
                             if (gwpData.GwpSelected.GwpType == MultiplierType.Volume)
-                                unknownEC = gwpData.Gwp * (revitElement.Volume / 27);
+                                unknownEC = gwpData.Gwp * (revitElement.FactoredVolume / 27);
                             else
-                                unknownEC = gwpData.Gwp * (revitElement.Weight / 2000);
+                                unknownEC = gwpData.Gwp * (revitElement.FactoredWeight / 2000);
                             revitElement.GwpType = gwpData.Gwp == gwpData.GwpSelected.Value ? gwpData.GwpSelected.Name : "User Input";
                             revitElement.Gwp = gwpData.Gwp;
                             revitElement.EmbodiedCarbon = unknownEC;
@@ -637,13 +685,21 @@ namespace Beacon
         /// <param name="e"></param>
         private void ConcreteGwpTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox gwpComboBox = sender as ComboBox;
-            string selectedGwp = gwpComboBox.SelectedItem as string;
-            GwpData gwpData = gwpComboBox.DataContext as GwpData;
-            GwpNameValue gwpNameValue = gwpData.ConcreteGwpList.First(x => x.Name == selectedGwp);
-            gwpData.GwpSelected = gwpNameValue;
-            gwpData.Gwp = gwpNameValue.Value;
-            RefreshPlot();
+            if (a_ConcreteTabFirstFocus == false)
+            {
+                ComboBox gwpComboBox = sender as ComboBox;
+                string selectedGwp = gwpComboBox.SelectedItem as string;
+                GwpData gwpData = gwpComboBox.DataContext as GwpData;
+                GwpNameValue gwpNameValue = gwpData.ConcreteGwpList.First(x => x.Name == selectedGwp);
+                gwpData.GwpSelected = gwpNameValue;
+                gwpData.Gwp = gwpNameValue.Value;
+                RefreshPlot();
+            }
+        }
+
+        private void ConcreteTab_GotFocus(object sender, RoutedEventArgs e)
+        {
+            a_ConcreteTabFirstFocus = false;
         }
 
         /// <summary>
@@ -653,13 +709,21 @@ namespace Beacon
         /// <param name="e"></param>
         private void SteelGwpTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox gwpComboBox = sender as ComboBox;
-            string selectedGwp = gwpComboBox.SelectedItem as string;
-            GwpData gwpData = gwpComboBox.DataContext as GwpData;
-            GwpNameValue gwpNameValue = gwpData.SteelGwpList.First(x => x.Name == selectedGwp);
-            gwpData.GwpSelected = gwpNameValue;
-            gwpData.Gwp = gwpNameValue.Value;
-            RefreshPlot();
+            if (a_SteelTabFirstFocus == false)
+            {
+                ComboBox gwpComboBox = sender as ComboBox;
+                string selectedGwp = gwpComboBox.SelectedItem as string;
+                GwpData gwpData = gwpComboBox.DataContext as GwpData;
+                GwpNameValue gwpNameValue = gwpData.SteelGwpList.First(x => x.Name == selectedGwp);
+                gwpData.GwpSelected = gwpNameValue;
+                gwpData.Gwp = gwpNameValue.Value;
+                RefreshPlot();
+            }
+        }
+
+        private void SteelTab_GotFocus(object sender, RoutedEventArgs e)
+        {
+            a_SteelTabFirstFocus = false;
         }
 
         /// <summary>
@@ -669,13 +733,21 @@ namespace Beacon
         /// <param name="e"></param>
         private void TimberGwpTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox gwpComboBox = sender as ComboBox;
-            string selectedGwp = gwpComboBox.SelectedItem as string;
-            GwpData gwpData = gwpComboBox.DataContext as GwpData;
-            GwpNameValue gwpNameValue = gwpData.TimberGwpList.First(x => x.Name == selectedGwp);
-            gwpData.GwpSelected = gwpNameValue;
-            gwpData.Gwp = gwpNameValue.Value;
-            RefreshPlot();
+            if (a_TimberTabFirstFocus == false)
+            {
+                ComboBox gwpComboBox = sender as ComboBox;
+                string selectedGwp = gwpComboBox.SelectedItem as string;
+                GwpData gwpData = gwpComboBox.DataContext as GwpData;
+                GwpNameValue gwpNameValue = gwpData.TimberGwpList.First(x => x.Name == selectedGwp);
+                gwpData.GwpSelected = gwpNameValue;
+                gwpData.Gwp = gwpNameValue.Value;
+                RefreshPlot();
+            }
+        }
+
+        private void TimberTab_GotFocus(object sender, RoutedEventArgs e)
+        {
+            a_TimberTabFirstFocus = false;
         }
 
         /// <summary>
@@ -685,13 +757,21 @@ namespace Beacon
         /// <param name="e"></param>
         private void UnknownGwpTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            ComboBox gwpComboBox = sender as ComboBox;
-            string selectedGwp = gwpComboBox.SelectedItem as string;
-            GwpData gwpData = gwpComboBox.DataContext as GwpData;
-            GwpNameValue gwpNameValue = gwpData.AllGwpList.First(x => x.Name == selectedGwp);
-            gwpData.GwpSelected = gwpNameValue;
-            gwpData.Gwp = gwpNameValue.Value;
-            RefreshPlot();
+            if (a_UnknownTabFirstFocus == false)
+            {
+                ComboBox gwpComboBox = sender as ComboBox;
+                string selectedGwp = gwpComboBox.SelectedItem as string;
+                GwpData gwpData = gwpComboBox.DataContext as GwpData;
+                GwpNameValue gwpNameValue = gwpData.AllGwpList.First(x => x.Name == selectedGwp);
+                gwpData.GwpSelected = gwpNameValue;
+                gwpData.Gwp = gwpNameValue.Value;
+                RefreshPlot();
+            }
+        }
+
+        private void UnknownTab_GotFocus(object sender, RoutedEventArgs e)
+        {
+            a_UnknownTabFirstFocus = false;
         }
 
         /// <summary>
