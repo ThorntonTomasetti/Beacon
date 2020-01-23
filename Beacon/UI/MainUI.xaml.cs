@@ -71,6 +71,9 @@ namespace Beacon
             // Initialize GWP
             InitializeGwpData();
 
+            // Set DataGrid ToolTips
+            SetDataGridColumnToolTips();
+
             // Parse Revit Data
             ParseByCategoryAndLevel();
 
@@ -86,6 +89,7 @@ namespace Beacon
             LevelButton.FontWeight = FontWeights.Regular;
             a_isCategoryPlot = true;
             a_isInitialing = false;
+
         }
 
         /// <summary>
@@ -105,6 +109,80 @@ namespace Beacon
             TimberGWPDataGrid.ItemsSource = a_TimberGwpDataList;
             UnknownGWPDataGrid.ItemsSource = a_UnknownGwpDataList;
             RebarGWPDataGrid.ItemsSource = a_ConcreteGwpDataList;
+        }
+
+        /// <summary>
+        /// Set DataGrid ToolTips
+        /// </summary>
+        private void SetDataGridColumnToolTips()
+        {
+            var revitCatToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            revitCatToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Revit Category"));
+            SteelGWPDataGrid.Columns[0].HeaderStyle = revitCatToolTip;
+            ConcreteGWPDataGrid.Columns[0].HeaderStyle = revitCatToolTip;
+            TimberGWPDataGrid.Columns[0].HeaderStyle = revitCatToolTip;
+            UnknownGWPDataGrid.Columns[0].HeaderStyle = revitCatToolTip;
+            RebarGWPDataGrid.Columns[0].HeaderStyle = revitCatToolTip;
+
+            var revitMaterialToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            revitMaterialToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Revit Material Name"));
+            SteelGWPDataGrid.Columns[1].HeaderStyle = revitMaterialToolTip;
+            ConcreteGWPDataGrid.Columns[1].HeaderStyle = revitMaterialToolTip;
+            TimberGWPDataGrid.Columns[1].HeaderStyle = revitMaterialToolTip;
+            UnknownGWPDataGrid.Columns[1].HeaderStyle = revitMaterialToolTip;
+            RebarGWPDataGrid.Columns[1].HeaderStyle = revitMaterialToolTip;
+
+            var volumeFactorToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            volumeFactorToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Use this factor to increase or decrease the volume"));
+            SteelGWPDataGrid.Columns[2].HeaderStyle = volumeFactorToolTip;
+            ConcreteGWPDataGrid.Columns[2].HeaderStyle = volumeFactorToolTip;
+            TimberGWPDataGrid.Columns[2].HeaderStyle = volumeFactorToolTip;
+            UnknownGWPDataGrid.Columns[2].HeaderStyle = volumeFactorToolTip;
+
+            var volumeToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            volumeToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Total volume for Category-Material group"));
+            SteelGWPDataGrid.Columns[3].HeaderStyle = volumeToolTip;
+            ConcreteGWPDataGrid.Columns[3].HeaderStyle = volumeToolTip;
+            TimberGWPDataGrid.Columns[3].HeaderStyle = volumeToolTip;
+            UnknownGWPDataGrid.Columns[3].HeaderStyle = volumeToolTip;
+
+            var densityToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            densityToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Density for Category-Material group"));
+            SteelGWPDataGrid.Columns[4].HeaderStyle = densityToolTip;
+            ConcreteGWPDataGrid.Columns[4].HeaderStyle = densityToolTip;
+            TimberGWPDataGrid.Columns[4].HeaderStyle = densityToolTip;
+            UnknownGWPDataGrid.Columns[4].HeaderStyle = densityToolTip;
+
+            var gwpTypeToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            gwpTypeToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Predefined GWP Types"));
+            SteelGWPDataGrid.Columns[5].HeaderStyle = gwpTypeToolTip;
+            ConcreteGWPDataGrid.Columns[5].HeaderStyle = gwpTypeToolTip;
+            TimberGWPDataGrid.Columns[5].HeaderStyle = gwpTypeToolTip;
+            UnknownGWPDataGrid.Columns[5].HeaderStyle = gwpTypeToolTip;
+
+            var gwpValueToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            gwpValueToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Predefined GWP Value or enter custom GWP value"));
+            SteelGWPDataGrid.Columns[6].HeaderStyle = gwpValueToolTip;
+            ConcreteGWPDataGrid.Columns[6].HeaderStyle = gwpValueToolTip;
+            TimberGWPDataGrid.Columns[6].HeaderStyle = gwpValueToolTip;
+            UnknownGWPDataGrid.Columns[6].HeaderStyle = gwpValueToolTip;
+            RebarGWPDataGrid.Columns[6].HeaderStyle = gwpValueToolTip;
+
+            var quantityToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            quantityToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Total quantity of concrete in cubic yards or square feet"));
+            RebarGWPDataGrid.Columns[2].HeaderStyle = quantityToolTip;
+
+            var multiplierToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            multiplierToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Multiply this value by Quantity to calculate a rebar weight"));
+            RebarGWPDataGrid.Columns[3].HeaderStyle = multiplierToolTip;
+
+            var multiplierUnitToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            multiplierUnitToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Multiplier Unit"));
+            RebarGWPDataGrid.Columns[4].HeaderStyle = multiplierUnitToolTip;
+
+            var weightToolTip = new Style(typeof(System.Windows.Controls.Primitives.DataGridColumnHeader));
+            weightToolTip.Setters.Add(new Setter(ToolTipService.ToolTipProperty, "Calculated rebar weight from (Quantity * Multiplier) or enter custom weight"));
+            RebarGWPDataGrid.Columns[5].HeaderStyle = weightToolTip;
         }
 
         /// <summary>

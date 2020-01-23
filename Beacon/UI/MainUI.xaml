@@ -62,7 +62,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Category" Binding="{Binding Category}" IsReadOnly="True" />
                             <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" IsReadOnly="True"/>
-                            <DataGridTemplateColumn Header="Volume Factor">
+                            <DataGridTemplateColumn Header="Factor">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBox Text="{Binding Path=VolumeFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="TextBox_LostFocus" />
@@ -111,7 +111,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Category" Binding="{Binding Category}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" IsReadOnly="True"/>
-                            <DataGridTemplateColumn Header="Volume Factor">
+                            <DataGridTemplateColumn Header="Factor">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBox Text="{Binding Path=VolumeFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="TextBox_LostFocus" />
@@ -160,7 +160,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Category" Binding="{Binding Category}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" IsReadOnly="True"/>
-                            <DataGridTemplateColumn Header="Volume Factor">
+                            <DataGridTemplateColumn Header="Factor">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBox Text="{Binding Path=VolumeFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="TextBox_LostFocus" />
@@ -209,7 +209,7 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Category" Binding="{Binding Category}" IsReadOnly="True"/>
                             <DataGridTextColumn Header="Material Name" Binding="{Binding MaterialName}" IsReadOnly="True"/>
-                            <DataGridTemplateColumn Header="Volume Factor">
+                            <DataGridTemplateColumn Header="Factor">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBox Text="{Binding Path=VolumeFactor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" LostFocus="TextBox_LostFocus" />
