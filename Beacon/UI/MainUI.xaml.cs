@@ -90,6 +90,7 @@ namespace Beacon
             a_isCategoryPlot = true;
             a_isInitialing = false;
 
+            this.VersionLabel.Content = "v" + typeof(BeaconCommand).Assembly.GetName().Version.ToString();
         }
 
         /// <summary>
