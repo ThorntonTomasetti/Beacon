@@ -64,7 +64,6 @@ namespace Beacon
             set
             {
                 density = value;
-                Weight = Volume * density;
                 if (density == 0.0)
                 {
                     Material = MaterialType.Unknown;
@@ -75,7 +74,27 @@ namespace Beacon
         /// <summary>
         /// Weight in lbs
         /// </summary>
-        public double Weight { get; set; }
+        public double Weight {
+            get
+            {
+                return Volume * Density;
+            }
+        }
+
+        /// <summary>
+        /// Factor for volume
+        /// </summary>
+        public double VolumeFactor { get; set; }
+
+        /// <summary>
+        /// Factored Volume
+        /// </summary>
+        public double FactoredVolume { get; set; }
+
+        /// <summary>
+        /// Factored Weight
+        /// </summary>
+        public double FactoredWeight { get; set; }
 
         /// <summary>
         /// Area in ft^2

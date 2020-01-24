@@ -23,9 +23,10 @@
                     <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True" />
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="AssociatedLevel" Binding="{Binding AssociatedLevel}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Volume (CF)" Binding="{Binding Volume, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Volume Factor" Binding="{Binding VolumeFactor, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Factored Volume (CF)" Binding="{Binding FactoredVolume, StringFormat=N2}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Density (PCF)" Binding="{Binding Density, StringFormat=N2}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="Weight (LB)" Binding="{Binding Weight, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Factored Weight (LB)" Binding="{Binding FactoredWeight, StringFormat=N2}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Area (SF)" Binding="{Binding Area, StringFormat=N2}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Material" Binding="{Binding Material}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="MaterialName" Binding="{Binding MaterialName}" IsReadOnly="True" />

@@ -182,6 +182,32 @@ namespace Beacon
     public class GwpData : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+        
+        /// <summary>
+        /// List of all RevitElements belonging to GwpData
+        /// </summary>
+        public List<RevitElement> RevitElements = new List<RevitElement>();
+
+        /// <summary>
+        /// Get total rebar weight of all RevitElements belonging to this GwpData
+        /// </summary>
+        /// <returns>Total Rebar Weight</returns>
+        public double GetTotalRebarWeight()
+        {
+            double totalRebarWeight = 0.0;
+            foreach (var revitElement in RevitElements)
+            {
+                if (revitElement.Category == RevitCategory.Floor)
+                {
+                    totalRebarWeight += VolumeFactor * RebarWeightMultiplier * revitElement.Area;
+                }
+                else
+                {
+                    totalRebarWeight += VolumeFactor * RebarWeightMultiplier * revitElement.Volume / 27;
+                }
+            }
+            return totalRebarWeight;
+        }
 
         /// <summary>
         /// GWP representation
@@ -192,6 +218,7 @@ namespace Beacon
         {
             Category = revitCategory;
             MaterialName = materialName;
+            volumeFactor = 1.00;
         }
 
         /// <summary>
@@ -248,11 +275,14 @@ namespace Beacon
         /// </summary>
         public double RebarEstimateBasis
         {
-            get { return rebarEstimateBasis; }
+            get
+            {
+                return VolumeFactor * rebarEstimateBasis;
+            }
             set
             {
                 rebarEstimateBasis = value;
-                RebarWeight = rebarEstimateBasis * rebarWeightMultiplier;
+                RebarWeight = RebarEstimateBasis * RebarWeightMultiplier;
             }
         }
 
@@ -263,7 +293,7 @@ namespace Beacon
         {
             get
             {
-                string val = rebarEstimateBasis.ToString("N2");
+                string val = RebarEstimateBasis.ToString("N2");
                 if (this.Category == RevitCategory.Floor) val = val + " SF";
                 else val = val + " CY";
                 return val;
@@ -280,7 +310,8 @@ namespace Beacon
             set
             {
                 rebarWeightMultiplier = value;
-                RebarWeight = rebarEstimateBasis * rebarWeightMultiplier;
+                RebarWeight = RebarEstimateBasis * RebarWeightMultiplier;
+                OnPropertyChanged("RebarWeight");
             }
         }
 
@@ -343,11 +374,30 @@ namespace Beacon
         public double Volume {
             get
             {
-                return volume;
+                return Math.Round(VolumeFactor * volume, 2);
             }
             set
             {
                 volume = Math.Round(value, 2);
+            }
+        }
+
+        private double volumeFactor;
+        /// <summary>
+        /// Factor for Volume
+        /// </summary>
+        public double VolumeFactor
+        {
+            get
+            {
+                return volumeFactor;
+            }
+            set
+            {
+                volumeFactor = value;
+                OnPropertyChanged("VolumeString");
+                OnPropertyChanged("RebarEstimateBasisString");
+                RebarWeight = RebarEstimateBasis * RebarWeightMultiplier;
             }
         }
 
@@ -358,7 +408,7 @@ namespace Beacon
         {
             get
             {
-                return volume.ToString("N0") + " CF";
+                return Volume.ToString("N0") + " CF";
             }
         }
 
@@ -384,7 +434,7 @@ namespace Beacon
         {
             get
             {
-                return density.ToString("N0") + " PCF";
+                return Density.ToString("N0") + " PCF";
             }
         }
 
