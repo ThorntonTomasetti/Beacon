@@ -22,7 +22,7 @@ Elements belonging to the following Revit Categories are considered:
 
 The total embodied carbon per square meter of floor area is measured against median values for various building typologies (Commercial, Residential, Education, Health Care, Lodging, Mixed, etc) and rated red, yellow, or green. Those median values are from data provided to the [Carbon Leadership Forum](http://www.carbonleadershipforum.org/) since 2012 for the [Embodied Carbon Benchmark Study](http://www.carbonleadershipforum.org/projects/embodied-carbon-benchmark-study/). This tool will hopefully make embodied carbon part of an engineers design thought process and also allow them to share their data.
 
-The EC takeoff is targeted for EC3 integration and AIA 2050 metrics. Future development may include automated uploads to a central database and more detailed optimization strategies.  
+The EC takeoff is targeted for EC3 integration and SE 2050 metrics. Future development may include automated uploads to a central database and more detailed optimization strategies.  
 
 ## Documentation
 [core-studio.gitbook.io/beacon](https://core-studio.gitbook.io/beacon/)
