@@ -706,7 +706,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Beacon, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Beacon, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_3CD25B80BEDC47E3829FE3DFE177225F"
@@ -850,7 +850,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Beacon, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Beacon, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_5A15CD9C758B43AABE0D4F533769B75D"
@@ -912,7 +912,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Beacon, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Beacon, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8B51B39082594E35BA87D08806F52AFE"
@@ -1250,15 +1250,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Beacon"
-        "ProductCode" = "8:{403091D0-C5BD-4C8F-8BFA-8A89F2F3780D}"
-        "PackageCode" = "8:{FF8B6165-42DA-437D-88BF-29D5D4D19E28}"
+        "ProductCode" = "8:{B4EC2C0C-8926-46BB-8A47-B74080E10DBA}"
+        "PackageCode" = "8:{F523AD25-3422-4DF1-BD1E-77E9C16F9AF3}"
         "UpgradeCode" = "8:{A3A19A37-6DE8-443F-9205-329EE02CD780}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:0.4.0"
+        "ProductVersion" = "8:0.5.0"
         "Manufacturer" = "8:Beacon"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
