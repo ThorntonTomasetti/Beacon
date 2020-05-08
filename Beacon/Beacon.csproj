@@ -299,23 +299,26 @@
     <PostBuildEvent>if $(ConfigurationName) == Debug2018 (
 rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2018\Beacon"
 del /q "C:\ProgramData\Autodesk\Revit\Addins\2018\Beacon.addin"
+del /q "C:\ProgramData\Autodesk\Revit\Addins\2018\EC.Beacon.addin"
 md "C:\ProgramData\Autodesk\Revit\Addins\2018\Beacon"
 copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2018\Beacon"
-copy "$(ProjectDir)Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2018"
+copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2018"
 )
 if $(ConfigurationName) == Debug2019 (
 rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2019\Beacon"
 del /q "C:\ProgramData\Autodesk\Revit\Addins\2019\Beacon.addin"
+del /q "C:\ProgramData\Autodesk\Revit\Addins\2019\EC.Beacon.addin"
 md "C:\ProgramData\Autodesk\Revit\Addins\2019\Beacon"
 copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2019\Beacon"
-copy "$(ProjectDir)Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2019"
+copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2019"
 )
 if $(ConfigurationName) == Debug2020 (
 rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2020\Beacon"
 del /q "C:\ProgramData\Autodesk\Revit\Addins\2020\Beacon.addin"
+del /q "C:\ProgramData\Autodesk\Revit\Addins\2020\EC.Beacon.addin"
 md "C:\ProgramData\Autodesk\Revit\Addins\2020\Beacon"
 copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2020\Beacon"
-copy "$(ProjectDir)Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2020"
+copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2020"
 )
 
 if $(ConfigurationName) == Release2018 (

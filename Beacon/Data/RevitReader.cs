@@ -335,7 +335,6 @@ namespace Beacon
                                             RevitElement floorDeck = new RevitElement(
                                                 revitElement.Category, revitElement.Id, deckName, revitElement.AssociatedLevel, revitElement.AssociatedElevation, volumeOfDeck,
                                                 elementLayerMaterial.Name, GetMaterialType(elementLayerMaterial), layerDensity);
-                                            floorDeck.Area = revitElement.Area;
                                             a_revitElementData.Add(floorDeck);
 
                                             // Don't add revitElement if added here, avoid double counting and counting deck with full depth volume.
