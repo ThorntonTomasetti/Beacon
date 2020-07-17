@@ -336,18 +336,18 @@ copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2020\Beacon"
 
 if $(ConfigurationName) == Release2018Internal (
 if exist $(SolutionDir)..\TTCore_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_2020.pfx /p C@TTrvt2020! $(TargetPath))
-del /q "$(SolutionDir)Deployment\Revit2018\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2018\Beacon"
+del /q "$(SolutionDir)Deployment\Revit2018\BeaconInternal\*"
+copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2018\BeaconInternal"
 )
 if $(ConfigurationName) == Release2019Internal (
 if exist $(SolutionDir)..\TTCore_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_2020.pfx /p C@TTrvt2020! $(TargetPath))
-del /q "$(SolutionDir)Deployment\Revit2019\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2019\Beacon"
+del /q "$(SolutionDir)Deployment\Revit2019\BeaconInternal\*"
+copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2019\BeaconInternal"
 )
 if $(ConfigurationName) == Release2020Internal (
 if exist $(SolutionDir)..\TTCore_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_2020.pfx /p C@TTrvt2020! $(TargetPath))
-del /q "$(SolutionDir)Deployment\Revit2020\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2020\Beacon"
+del /q "$(SolutionDir)Deployment\Revit2020\BeaconInternal\*"
+copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2020\BeaconInternal"
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -549,11 +549,11 @@ namespace Beacon
         {
             TimberGwpList = new List<GwpNameValue>()
             {
-                new GwpNameValue("Softwood Lumber", 95.0),
-                new GwpNameValue("Softwood Plywood", 169.7),
-                new GwpNameValue("Oriented Strand Board", 324.8),
-                new GwpNameValue("Glulam", 258.9),
-                new GwpNameValue("Laminated Veneer Lumber", 263.9)
+                new GwpNameValue("Softwood Lumber", 55.54),
+                new GwpNameValue("Softwood Plywood", 99.22),
+                new GwpNameValue("Oriented Strand Board", 189.85),
+                new GwpNameValue("Glulam", 151.36),
+                new GwpNameValue("Laminated Veneer Lumber", 154.29)
             };
             GwpSelectedIndex = 0;
             GwpSelected = TimberGwpList[0];
