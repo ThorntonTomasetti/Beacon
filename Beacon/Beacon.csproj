@@ -401,22 +401,22 @@ copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2021\Beacon"
 )
 
 if $(ConfigurationName) == Release2018Internal (
-if exist $(SolutionDir)..\TTCore_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_2020.pfx /p C@TTrvt2020! $(TargetPath))
+if exist $(SolutionDir)..\TTCore_digicert_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2020.pfx /p dc2020@csTT!YVR $(TargetPath))
 del /q "$(SolutionDir)Deployment\Revit2018\BeaconInternal\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2018\BeaconInternal"
 )
 if $(ConfigurationName) == Release2019Internal (
-if exist $(SolutionDir)..\TTCore_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_2020.pfx /p C@TTrvt2020! $(TargetPath))
+if exist $(SolutionDir)..\TTCore_digicert_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2020.pfx /p dc2020@csTT!YVR $(TargetPath))
 del /q "$(SolutionDir)Deployment\Revit2019\BeaconInternal\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2019\BeaconInternal"
 )
 if $(ConfigurationName) == Release2020Internal (
-if exist $(SolutionDir)..\TTCore_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_2020.pfx /p C@TTrvt2020! $(TargetPath))
+if exist $(SolutionDir)..\TTCore_digicert_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2020.pfx /p dc2020@csTT!YVR $(TargetPath))
 del /q "$(SolutionDir)Deployment\Revit2020\BeaconInternal\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2020\BeaconInternal"
 )
 if $(ConfigurationName) == Release2021Internal (
-if exist $(SolutionDir)..\TTCore_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_2020.pfx /p C@TTrvt2020! $(TargetPath))
+if exist $(SolutionDir)..\TTCore_digicert_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2020.pfx /p dc2020@csTT!YVR $(TargetPath))
 del /q "$(SolutionDir)Deployment\Revit2021\BeaconInternal\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2021\BeaconInternal"
 )</PostBuildEvent>
