@@ -21,6 +21,7 @@
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2019Internal'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2020Internal'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2021Internal'">v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2022Internal'">v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -76,7 +77,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2018|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release2018\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;R2018</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -85,7 +86,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2019|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release2019\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;R2019</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -94,7 +95,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2020|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release2020\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;R2020</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -103,7 +104,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2018Internal|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release2018Internal\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;R2018</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -112,7 +113,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2019Internal|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release2019Internal\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;R2019</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -121,7 +122,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2020Internal|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release2020Internal\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;R2020</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -139,7 +140,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2021|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release2021\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;R2021</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -148,7 +149,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2021Internal|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release2021Internal\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;R2021</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
@@ -166,6 +167,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2022|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Release2022\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;R2022</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2022Internal|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Release2022Internal\</OutputPath>
     <DefineConstants>TRACE;DEBUG;R2022</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -273,6 +283,10 @@
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2022Internal'">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release'">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
@@ -311,6 +325,10 @@
     </Reference>
     <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2021Internal'">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2022Internal'">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -450,24 +468,29 @@ copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2022\Beacon"
 )
 
 if $(ConfigurationName) == Release2018Internal (
-if exist $(SolutionDir)..\TTCore_digicert_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2020.pfx /p dc2020@csTT!YVR $(TargetPath))
+if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
 del /q "$(SolutionDir)Deployment\Revit2018\BeaconInternal\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2018\BeaconInternal"
 )
 if $(ConfigurationName) == Release2019Internal (
-if exist $(SolutionDir)..\TTCore_digicert_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2020.pfx /p dc2020@csTT!YVR $(TargetPath))
+if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
 del /q "$(SolutionDir)Deployment\Revit2019\BeaconInternal\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2019\BeaconInternal"
 )
 if $(ConfigurationName) == Release2020Internal (
-if exist $(SolutionDir)..\TTCore_digicert_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2020.pfx /p dc2020@csTT!YVR $(TargetPath))
+if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
 del /q "$(SolutionDir)Deployment\Revit2020\BeaconInternal\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2020\BeaconInternal"
 )
 if $(ConfigurationName) == Release2021Internal (
-if exist $(SolutionDir)..\TTCore_digicert_2020.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2020.pfx /p dc2020@csTT!YVR $(TargetPath))
+if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
 del /q "$(SolutionDir)Deployment\Revit2021\BeaconInternal\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2021\BeaconInternal"
+)
+if $(ConfigurationName) == Release2022Internal (
+if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
+del /q "$(SolutionDir)Deployment\Revit2022\BeaconInternal\*"
+copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2022\BeaconInternal"
 )</PostBuildEvent>
   </PropertyGroup>
 </Project>
