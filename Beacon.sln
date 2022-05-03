@@ -24,6 +24,7 @@ Global
 		Release2020Internal|Any CPU = Release2020Internal|Any CPU
 		Release2021|Any CPU = Release2021|Any CPU
 		Release2021Internal|Any CPU = Release2021Internal|Any CPU
+		Release2022|Any CPU = Release2022|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -56,6 +57,8 @@ Global
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2021|Any CPU.Build.0 = Release2021|Any CPU
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2021Internal|Any CPU.ActiveCfg = Release2021Internal|Any CPU
 		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2021Internal|Any CPU.Build.0 = Release2021Internal|Any CPU
+		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2022|Any CPU.ActiveCfg = Release2022|Any CPU
+		{9D068534-CB04-4CE4-9E34-36C5CD9BCCD9}.Release2022|Any CPU.Build.0 = Release2022|Any CPU
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Debug|Any CPU.ActiveCfg = Debug
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Debug2018|Any CPU.ActiveCfg = Debug
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Debug2019|Any CPU.ActiveCfg = Debug
@@ -71,6 +74,7 @@ Global
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2020Internal|Any CPU.ActiveCfg = Release2020Internal
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2021|Any CPU.ActiveCfg = Release2020Internal
 		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2021Internal|Any CPU.ActiveCfg = Release2020Internal
+		{AC4B7C1E-3CE8-49D7-832C-18519170CA29}.Release2022|Any CPU.ActiveCfg = Release2022
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

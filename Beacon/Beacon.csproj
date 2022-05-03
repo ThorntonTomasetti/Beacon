@@ -13,9 +13,11 @@
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Debug2019'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Debug2020'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Debug2021'">v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(Configuration)' == 'Debug2022'">v4.8</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2019'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2020'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2021'">v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2022'">v4.8</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2019Internal'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2020Internal'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2021Internal'">v4.8</TargetFrameworkVersion>
@@ -161,6 +163,15 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2022|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Release2022\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;R2022</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -250,6 +261,10 @@
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2022'">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2020Internal'">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -284,6 +299,10 @@
     </Reference>
     <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2021'">
       <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2022'">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2020Internal'">
@@ -424,6 +443,10 @@ copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2020\Beacon"
 if $(ConfigurationName) == Release2021 (
 del /q "$(SolutionDir)Deployment\Revit2021\Beacon\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2021\Beacon"
+)
+if $(ConfigurationName) == Release2022 (
+del /q "$(SolutionDir)Deployment\Revit2022\Beacon\*"
+copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2022\Beacon"
 )
 
 if $(ConfigurationName) == Release2018Internal (
