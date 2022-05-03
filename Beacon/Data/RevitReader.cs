@@ -162,7 +162,11 @@ namespace Beacon
                         revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
 
                         var elementVolume = element.GetParameters("Volume");
+#if (R2018 || R2019 || R2020)
                         revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), DisplayUnitType.DUT_CUBIC_FEET) : 0.0;
+#else
+                        revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), UnitTypeId.CubicFeet) : 0.0;
+#endif
                         var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
                         revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
                         revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
@@ -208,7 +212,11 @@ namespace Beacon
                         revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
 
                         var elementVolume = element.GetParameters("Volume");
+#if (R2018 || R2019 || R2020)
                         revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), DisplayUnitType.DUT_CUBIC_FEET) : 0.0;
+#else
+                        revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), UnitTypeId.CubicFeet) : 0.0;
+#endif
                         var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
                         revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
                         revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
@@ -274,10 +282,14 @@ namespace Beacon
                         revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
 
                         var floorArea = element.GetParameters("Area");
-                        revitElement.Area = floorArea.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(floorArea[0].AsDouble(), DisplayUnitType.DUT_SQUARE_FEET) : 0.0;
-
                         var elementVolume = element.GetParameters("Volume");
+#if (R2018 || R2019 || R2020)
+                        revitElement.Area = floorArea.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(floorArea[0].AsDouble(), DisplayUnitType.DUT_SQUARE_FEET) : 0.0;
                         revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), DisplayUnitType.DUT_CUBIC_FEET) : 0.0;
+#else
+                        revitElement.Area = floorArea.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(floorArea[0].AsDouble(), UnitTypeId.SquareFeet) : 0.0;
+                        revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), UnitTypeId.CubicFeet) : 0.0;
+#endif
 
                         // Look for metal deck
                         bool addRevitElement = true;
@@ -300,19 +312,28 @@ namespace Beacon
                                     {
                                         // hr = height of rib
                                         var hrParam = elementLayerDeck.GetParameters("hr");
-                                        double hr = hrParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(hrParam[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
                                         // wr = width of rib
                                         var wrParam = elementLayerDeck.GetParameters("wr");
-                                        double wr = wrParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(wrParam[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
                                         // rr = root of rib
                                         var rrParam = elementLayerDeck.GetParameters("rr");
-                                        double rr = rrParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(rrParam[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
                                         // Sr = width of rib
                                         var srParam = elementLayerDeck.GetParameters("Sr");
-                                        double Sr = srParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(srParam[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
                                         // Thickness
                                         var thicknessParam = elementLayerDeck.GetParameters("Thickness");
+#if (R2018 || R2019 || R2020)
+                                        double hr = hrParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(hrParam[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
+                                        double wr = wrParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(wrParam[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
+                                        double rr = rrParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(rrParam[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
+                                        double Sr = srParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(srParam[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
                                         double thickness = thicknessParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(thicknessParam[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
+#else
+                                        double hr = hrParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(hrParam[0].AsDouble(), UnitTypeId.Feet) : 0.0;
+                                        double wr = wrParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(wrParam[0].AsDouble(), UnitTypeId.Feet) : 0.0;
+                                        double rr = rrParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(rrParam[0].AsDouble(), UnitTypeId.Feet) : 0.0;
+                                        double Sr = srParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(srParam[0].AsDouble(), UnitTypeId.Feet) : 0.0;
+                                        double thickness = thicknessParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(thicknessParam[0].AsDouble(), UnitTypeId.Feet) : 0.0;
+#endif
+
                                         // Layer Density
                                         double layerDensity = GetDensity(elementLayerMaterial);
 
@@ -407,7 +428,12 @@ namespace Beacon
                         revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
 
                         var elementVolume = element.GetParameters("Volume");
+#if (R2018 || R2019 || R2020)
                         revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), DisplayUnitType.DUT_CUBIC_FEET) : 0.0;
+#else
+                        revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), UnitTypeId.CubicFeet) : 0.0;
+#endif
+
                         var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
                         revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
                         revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
@@ -416,13 +442,21 @@ namespace Beacon
 
                         // Split Wall by Levels
                         var unconnectedHeight = element.GetParameters("Unconnected Height"); // accounts for walls that have no top constraint assigned
+#if (R2018 || R2019 || R2020)
                         double wallHeight = unconnectedHeight.Count > 0 ? UnitUtils.ConvertFromInternalUnits(unconnectedHeight[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0;
+#else
+                        double wallHeight = unconnectedHeight.Count > 0 ? UnitUtils.ConvertFromInternalUnits(unconnectedHeight[0].AsDouble(), UnitTypeId.Feet) : 0;
+#endif
                         if (wallBaseConstraintLevel != null && wallHeight > 0 && a_levelData.Count > 0)
                         {
                             var wallBottomElevation = wallBaseConstraintLevel.ProjectElevation;
                             
                             var wallBottomOffset = element.GetParameters("Base Offset");
+#if (R2018 || R2019 || R2020)
                             var baseOffset = wallBottomOffset.Count > 0 ? UnitUtils.ConvertFromInternalUnits(wallBottomOffset[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0;
+#else
+                            var baseOffset = wallBottomOffset.Count > 0 ? UnitUtils.ConvertFromInternalUnits(wallBottomOffset[0].AsDouble(), UnitTypeId.Feet) : 0;
+#endif
                             double wtrueBel = wallBottomElevation + baseOffset; // true bottom elevation of wall with model offset applied
                             double wtrueTel = wtrueBel + wallHeight; // true top elevation of wall
                             SplitByLevels(revitElement, wtrueBel, wtrueTel, wallHeight);
@@ -489,7 +523,11 @@ namespace Beacon
                         revitElement.AssociatedLevel = GetMappedLevel(revitElement.AssociatedLevel);
 
                         var elementVolume = element.GetParameters("Volume");
+#if (R2018 || R2019 || R2020)
                         revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), DisplayUnitType.DUT_CUBIC_FEET) : 0.0;
+#else
+                        revitElement.Volume = elementVolume.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(elementVolume[0].AsDouble(), UnitTypeId.CubicFeet) : 0.0;
+#endif
                         var framingStructuralMaterial = this.GetStructuralMaterialFromElement(element, a_doc);
                         revitElement.MaterialName = framingStructuralMaterial != null ? framingStructuralMaterial.Name : "";
                         revitElement.Material = framingStructuralMaterial != null ? GetMaterialType(framingStructuralMaterial) : MaterialType.Unknown;
@@ -697,12 +735,20 @@ namespace Beacon
             if (structuralAsset != null)
             {
                 var densityParam = structuralAsset.GetParameters("Density");
+#if (R2018 || R2019 || R2020)
                 density = densityParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(densityParam[0].AsDouble(), DisplayUnitType.DUT_POUNDS_MASS_PER_CUBIC_FOOT) : 0.0;
-                
+#else
+                density = densityParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(densityParam[0].AsDouble(), UnitTypeId.PoundsMassPerCubicFoot) : 0.0;
+#endif
+
                 if (density == 0.0)
                 {
                     var unitWeightParam = structuralAsset.GetParameters("Unit weight");
+#if (R2018 || R2019 || R2020)
                     density = unitWeightParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(unitWeightParam[0].AsDouble(), DisplayUnitType.DUT_POUNDS_FORCE_PER_CUBIC_FOOT) : 0.0;
+#else
+                    density = unitWeightParam.Count() > 0 ? UnitUtils.ConvertFromInternalUnits(unitWeightParam[0].AsDouble(), UnitTypeId.PoundsForcePerCubicFoot) : 0.0;
+#endif
                 }
             }
             return density;
@@ -747,10 +793,14 @@ namespace Beacon
             if (pt != null && baseLevel != null && topLevel != null)
             {
                 var baseOffset = inst.GetParameters("Base Offset");
-                var baseOffsetVal = baseOffset != null && baseOffset.Count > 0 ? UnitUtils.ConvertFromInternalUnits(baseOffset[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
-
                 var topOffset = inst.GetParameters("Top Offset");
+#if (R2018 || R2019 || R2020)
+                var baseOffsetVal = baseOffset != null && baseOffset.Count > 0 ? UnitUtils.ConvertFromInternalUnits(baseOffset[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
                 var topOffsetVal = topOffset != null && topOffset.Count > 0 ? UnitUtils.ConvertFromInternalUnits(topOffset[0].AsDouble(), DisplayUnitType.DUT_DECIMAL_FEET) : 0.0;
+#else
+                var baseOffsetVal = baseOffset != null && baseOffset.Count > 0 ? UnitUtils.ConvertFromInternalUnits(baseOffset[0].AsDouble(), UnitTypeId.Feet) : 0.0;
+                var topOffsetVal = topOffset != null && topOffset.Count > 0 ? UnitUtils.ConvertFromInternalUnits(topOffset[0].AsDouble(), UnitTypeId.Feet) : 0.0;
+#endif
 
                 var strPt = new XYZ(pt.X, pt.Y, baseLevel.Elevation + baseOffsetVal);
                 var endPt = new XYZ(pt.X, pt.Y, topLevel.Elevation + topOffsetVal);
