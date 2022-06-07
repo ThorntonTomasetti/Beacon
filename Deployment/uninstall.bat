@@ -15,4 +15,8 @@ IF EXIST "C:\ProgramData\Autodesk\Revit\Addins\2021" (
         rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2021\Beacon"
 	del /q "C:\ProgramData\Autodesk\Revit\Addins\2021\Beacon.addin"
 )
+IF EXIST "C:\ProgramData\Autodesk\Revit\Addins\2022" (
+        rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2022\Beacon"
+	del /q "C:\ProgramData\Autodesk\Revit\Addins\2022\Beacon.addin"
+)
 pause
