@@ -46,7 +46,7 @@
                         <RowDefinition Height="5*"></RowDefinition>
                         <RowDefinition Height="95*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Steel (GWP Unit = kg CO2 per short ton)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" />
+                    <Label Grid.Row="0" Content="Steel (GWP Unit = kg CO2e per short ton)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" />
                     <Button Grid.Row="0" Name="ResetSteelGwpButton" Content="Reset" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="75" Height="20" Click="ResetSteelGwpButton_Click" />
                     <DataGrid Grid.Row="1" Margin="10" Name="SteelGWPDataGrid" AutoGenerateColumns="False" Background="White" GridLinesVisibility="None" ColumnWidth="*" HeadersVisibility="Column">
                         <DataGrid.Resources>
@@ -95,7 +95,7 @@
                         <RowDefinition Height="5*"></RowDefinition>
                         <RowDefinition Height="95*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Concrete (GWP Unit = kg CO2 per cubic yard)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" />
+                    <Label Grid.Row="0" Content="Concrete (GWP Unit = kg CO2e per cubic yard)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" />
                     <Button Grid.Row="0" Name="ResetConcreteGwpButton" Content="Reset" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="75" Height="20" Click="ResetConcreteGwpButton_Click" />
                     <DataGrid Grid.Row="1" Margin="10" Name="ConcreteGWPDataGrid" AutoGenerateColumns="False" Background="White" GridLinesVisibility="None" ColumnWidth="*" HeadersVisibility="Column">
                         <DataGrid.Resources>
@@ -144,7 +144,7 @@
                         <RowDefinition Height="5*"></RowDefinition>
                         <RowDefinition Height="95*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Timber (GWP Unit = kg CO2 per cubic yard)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" />
+                    <Label Grid.Row="0" Content="Timber (GWP Unit = kg CO2e per cubic yard)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" />
                     <Button Grid.Row="0" Name="ResetTimberGwpButton" Content="Reset" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="75" Height="20" Click="ResetTimberGwpButton_Click" />
                     <DataGrid Grid.Row="1" Margin="10" Name="TimberGWPDataGrid" AutoGenerateColumns="False" Background="White" GridLinesVisibility="None" ColumnWidth="*" HeadersVisibility="Column">
                         <DataGrid.Resources>
@@ -193,7 +193,7 @@
                         <RowDefinition Height="5*"></RowDefinition>
                         <RowDefinition Height="95*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Unknown (GWP Unit = kg CO2 per cubic yard)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" />
+                    <Label Grid.Row="0" Content="Unknown (GWP Unit = kg CO2e per cubic yard)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" />
                     <Button Grid.Row="0" Name="ResetUnknownGwpButton" Content="Reset" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="75" Height="20" Click="ResetUnknownGwpButton_Click" />
                     <DataGrid Grid.Row="1" Margin="10" Name="UnknownGWPDataGrid" AutoGenerateColumns="False" Background="White" GridLinesVisibility="None" ColumnWidth="*" HeadersVisibility="Column">
                         <DataGrid.Resources>
@@ -242,7 +242,7 @@
                         <RowDefinition Height="5*"></RowDefinition>
                         <RowDefinition Height="95*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Rebar (GWP Unit = kg CO2 per short ton)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" Grid.ColumnSpan="2" />
+                    <Label Grid.Row="0" Content="Rebar (GWP Unit = kg CO2e per short ton)" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" Grid.ColumnSpan="2" />
                     <Button Grid.Row="0" Name="ResetRebarGwpButton" Content="Reset" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="75" Height="20" Click="ResetConcreteGwpButton_Click" />
                     <DataGrid Grid.Row="1" Margin="10" Name="RebarGWPDataGrid" AutoGenerateColumns="False" Background="White" GridLinesVisibility="None" ColumnWidth="*" HeadersVisibility="Column">
                         <DataGrid.Resources>
@@ -317,7 +317,7 @@
             </DataGrid.CellStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Type" Binding="{Binding Path=Name, Mode=TwoWay}" IsReadOnly="True" />
-                <DataGridTextColumn Header="CO2 (kg)" Binding="{Binding Path=Value, Mode=TwoWay, StringFormat=N0}" IsReadOnly="True" />
+                <DataGridTextColumn Header="CO2e (kg)" Binding="{Binding Path=Value, Mode=TwoWay, StringFormat=N0}" IsReadOnly="True" />
             </DataGrid.Columns>
         </DataGrid>
 

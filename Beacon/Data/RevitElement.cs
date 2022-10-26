@@ -142,8 +142,8 @@ namespace Beacon
             get
             {
                 string val;
-                if (this.Material == MaterialType.Steel || this.Material == MaterialType.Rebar) val = "KG PER SHORT TON";
-                else val = "KG PER CUBIC YARD";
+                if (this.Material == MaterialType.Steel || this.Material == MaterialType.Rebar) val = "KG CO2e PER SHORT TON";
+                else val = "KG CO2e PER CUBIC YARD";
                 return val;
             }
         }
