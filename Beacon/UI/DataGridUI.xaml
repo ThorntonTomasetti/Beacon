@@ -34,12 +34,12 @@
                     <DataGridTextColumn Header="GwpType" Binding="{Binding GwpType}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Gwp" Binding="{Binding Gwp, StringFormat=N2}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="GwpUnit" Binding="{Binding GwpUnit}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="EmbodiedCarbon (KG)" Binding="{Binding EmbodiedCarbon, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="EmbodiedCarbon (KG CO2e)" Binding="{Binding EmbodiedCarbon, StringFormat=N2}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="RebarMultiplier" Binding="{Binding RebarMultiplier}" IsReadOnly="True" />
                     <DataGridTextColumn Header="RebarMultiplierUnit" Binding="{Binding RebarMultiplierUnit}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="RebarWeight (LB)" Binding="{Binding RebarWeight, StringFormat=N2}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="RebarGwp (KG/SHORT TON)" Binding="{Binding RebarGwp, StringFormat=N2}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="RebarEmbodiedCarbon (KG)" Binding="{Binding RebarEmbodiedCarbon, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="RebarGwp (KG CO2e/SHORT TON)" Binding="{Binding RebarGwp, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="RebarEmbodiedCarbon (KG CO2e)" Binding="{Binding RebarEmbodiedCarbon, StringFormat=N2}" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
