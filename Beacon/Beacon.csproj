@@ -14,10 +14,14 @@
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Debug2020'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Debug2021'">v4.8</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Debug2022'">v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(Configuration)' == 'Debug2023'">v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(Configuration)' == 'Debug2024'">v4.8</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2019'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2020'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2021'">v4.8</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2022'">v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2023'">v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2024'">v4.8</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2019Internal'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2020Internal'">v4.7.2</TargetFrameworkVersion>
     <TargetFrameworkVersion Condition="'$(Configuration)' == 'Release2021Internal'">v4.8</TargetFrameworkVersion>
