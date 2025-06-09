@@ -557,14 +557,6 @@ md "C:\ProgramData\Autodesk\Revit\Addins\2024\Beacon"
 copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2024\Beacon"
 copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2024"
 )
-if $(ConfigurationName) == Debug2025 (
-rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2025\Beacon"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2025\Beacon.addin"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2025\EC.Beacon.addin"
-md "C:\ProgramData\Autodesk\Revit\Addins\2025\Beacon"
-copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2025\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2025"
-)
 
 if $(ConfigurationName) == Release2018 (
 del /q "$(SolutionDir)Deployment\Revit2018\Beacon\*"
@@ -593,10 +585,6 @@ copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2023\Beacon"
 if $(ConfigurationName) == Release2024 (
 del /q "$(SolutionDir)Deployment\Revit2024\Beacon\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2024\Beacon"
-)
-if $(ConfigurationName) == Release2025 (
-del /q "$(SolutionDir)Deployment\Revit2025\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2025\Beacon"
 )
 
 if $(ConfigurationName) == Release2018Internal (
