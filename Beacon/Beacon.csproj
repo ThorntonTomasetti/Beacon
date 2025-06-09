@@ -581,10 +581,12 @@ copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2022\Beacon"
 if $(ConfigurationName) == Release2023 (
 del /q "$(SolutionDir)Deployment\Revit2023\Beacon\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2023\Beacon"
+copy "$(ProjectDir)EC.Beacon.addin" "$(SolutionDir)Deployment\Revit2023"
 )
 if $(ConfigurationName) == Release2024 (
 del /q "$(SolutionDir)Deployment\Revit2024\Beacon\*"
 copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2024\Beacon"
+copy "$(ProjectDir)EC.Beacon.addin" "$(SolutionDir)Deployment\Revit2024"
 )
 
 if $(ConfigurationName) == Release2018Internal (
