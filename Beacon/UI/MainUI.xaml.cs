@@ -554,12 +554,11 @@ namespace Beacon
             a_categoryPlotData.Clear();
             a_levelPlotData.Clear();
             a_totalArea = 0.0;
-            Dictionary<string, double> rebarECByCatDict = new Dictionary<string, double>();
-            Dictionary<string, Tuple<string, double>> rebarECByLevelDict = new Dictionary<string, Tuple<string, double>>();
+            
             foreach (var revitElement in a_RevitReader.RevitElementData)
             {
                 if (revitElement.Area > 0) a_totalArea += revitElement.Area;
-                double unknownEC = 0.0, steelEC = 0.0, concreteEC = 0.0, timberEC = 0.0;
+                double unknownEC = 0.0, steelEC = 0.0, concreteEC = 0.0, timberEC = 0.0, rebarEC = 0.0;
                 switch (revitElement.Material)
                 {
                     case MaterialType.Steel:
@@ -595,27 +594,16 @@ namespace Beacon
                             if (revitElement.Category == RevitCategory.Floor)
                             {
                                 double rebarWeight = gwpData.VolumeFactor * gwpData.RebarWeightMultiplier * revitElement.Area;
-                                revitElement.RebarWeight = (rebarWeight / gwpData.GetTotalRebarWeight()) * gwpData.RebarWeight;
+                                revitElement.RebarWeight = rebarWeight;
                             }
                             else
                             {
                                 double rebarWeight = gwpData.VolumeFactor * gwpData.RebarWeightMultiplier * revitElement.Volume / 27;
-                                revitElement.RebarWeight = (rebarWeight / gwpData.GetTotalRebarWeight()) * gwpData.RebarWeight;
+                                revitElement.RebarWeight = rebarWeight;
                             }
                             revitElement.RebarGwp = gwpData.RebarGwp;
-                            revitElement.RebarEmbodiedCarbon = gwpData.RebarGwp * (revitElement.RebarWeight / 2000);
-
-                            // Category and Level Rebar Estimate
-                            if (rebarECByCatDict.ContainsKey(revitElement.Category.ToString()) == false)
-                            {
-                                double rebarECValue = gwpData.RebarGwp * (gwpData.RebarWeight / 2000);
-                                rebarECByCatDict.Add(revitElement.Category.ToString(), rebarECValue);
-
-                                foreach (var levelRatio in gwpData.rebarLevelRatio)
-                                {
-                                    rebarECByLevelDict.Add(revitElement.Category.ToString() + levelRatio.Key, Tuple.Create(levelRatio.Key, levelRatio.Value * rebarECValue));
-                                }
-                            }
+                            rebarEC = gwpData.RebarGwp * (revitElement.RebarWeight / 2000);
+                            revitElement.RebarEmbodiedCarbon = rebarEC;
                         }
                         break;
                     case MaterialType.Timber:
@@ -658,7 +646,7 @@ namespace Beacon
                 PlotData categoryPlotData = null;
                 if (foundCatData.Count() == 0)
                 {
-                    categoryPlotData = new PlotData(revitElement.Category.ToString(), steelEC, concreteEC, timberEC, unknownEC, 0, 0);
+                    categoryPlotData = new PlotData(revitElement.Category.ToString(), steelEC, concreteEC, timberEC, unknownEC, rebarEC, 0);
                     a_categoryPlotData.Add(categoryPlotData);
                 }
                 else if (foundCatData.Count() > 0)
@@ -668,6 +656,7 @@ namespace Beacon
                     categoryPlotData.Concrete += concreteEC;
                     categoryPlotData.Timber += timberEC;
                     categoryPlotData.Unknown += unknownEC;
+                    categoryPlotData.Rebar += rebarEC;
                 }
 
                 // Level
@@ -675,7 +664,7 @@ namespace Beacon
                 PlotData levelPlotData = null;
                 if (foundLevelData.Count() == 0)
                 {
-                    levelPlotData = new PlotData(revitElement.AssociatedLevel, steelEC, concreteEC, timberEC, unknownEC, 0, revitElement.AssociatedElevation);
+                    levelPlotData = new PlotData(revitElement.AssociatedLevel, steelEC, concreteEC, timberEC, unknownEC, rebarEC, revitElement.AssociatedElevation);
                     a_levelPlotData.Add(levelPlotData);
                 }
                 else if (foundLevelData.Count() > 0)
@@ -685,26 +674,7 @@ namespace Beacon
                     levelPlotData.Concrete += concreteEC;
                     levelPlotData.Timber += timberEC;
                     levelPlotData.Unknown += unknownEC;
-                }
-            }
-
-            // Category Rebar
-            foreach (var catData in a_categoryPlotData)
-            {
-                double rebarEC = 0.0;
-                if (rebarECByCatDict.TryGetValue(catData.Label, out rebarEC))
-                {
-                    catData.Rebar = rebarEC;
-                }
-            }
-            // Level Rebar
-            foreach (var levelRebarEC in rebarECByLevelDict)
-            {
-                var foundLevelData = a_levelPlotData.Where(c => c.Label == levelRebarEC.Value.Item1);
-                if (foundLevelData.Count() > 0)
-                {
-                    PlotData levelPlotData = foundLevelData.First();
-                    levelPlotData.Rebar += levelRebarEC.Value.Item2;
+                    levelPlotData.Rebar += rebarEC;
                 }
             }
 

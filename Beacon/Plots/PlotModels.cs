@@ -25,7 +25,7 @@ namespace Beacon
         public ColumnSeriesByCategory(Collection<PlotData> plotData)
         {
             // Create the plot model
-            var tmp = new PlotModel { Title = "Embodied Carbon (kg)", LegendPlacement = LegendPlacement.Outside, LegendPosition = LegendPosition.RightBottom, LegendOrientation = LegendOrientation.Vertical };
+            var tmp = new PlotModel { Title = "Embodied Carbon (kg CO2e)", LegendPlacement = LegendPlacement.Outside, LegendPosition = LegendPosition.RightBottom, LegendOrientation = LegendOrientation.Vertical };
 
             // Add the axes, note that MinimumPadding and AbsoluteMinimum should be set on the value axis.
             tmp.Axes.Add(new CategoryAxis { ItemsSource = plotData, LabelField = "Label", GapWidth = 0.2 });
@@ -57,7 +57,7 @@ namespace Beacon
         public BarSeriesByLevel(Collection<PlotData> plotData)
         {
             // Create the plot model
-            var tmp = new PlotModel { Title = "Embodied Carbon (kg)", LegendPlacement = LegendPlacement.Outside, LegendPosition = LegendPosition.RightBottom, LegendOrientation = LegendOrientation.Vertical };
+            var tmp = new PlotModel { Title = "Embodied Carbon (kg CO2e)", LegendPlacement = LegendPlacement.Outside, LegendPosition = LegendPosition.RightBottom, LegendOrientation = LegendOrientation.Vertical };
 
             // Add the axes, note that MinimumPadding and AbsoluteMinimum should be set on the value axis.
             tmp.Axes.Add(new CategoryAxis { Position = AxisPosition.Left, ItemsSource = plotData, LabelField = "Label", GapWidth = 0.2 });
