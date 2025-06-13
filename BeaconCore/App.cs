@@ -8,7 +8,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 
 using Autodesk.Revit.UI;
-using Beacon.Properties;
+using BeaconCore.Properties;
 
 namespace Beacon
 {

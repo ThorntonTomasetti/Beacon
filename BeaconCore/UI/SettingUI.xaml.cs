@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using Beacon.Properties;
+using BeaconCore.Properties;
 
 namespace Beacon
 {

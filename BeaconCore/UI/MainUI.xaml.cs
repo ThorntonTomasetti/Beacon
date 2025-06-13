@@ -18,7 +18,7 @@ using System.Diagnostics;
 
 using System.Collections.ObjectModel;
 
-using Beacon.Properties;
+using BeaconCore.Properties;
 
 namespace Beacon
 {

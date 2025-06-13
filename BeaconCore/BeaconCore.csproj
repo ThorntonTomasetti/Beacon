@@ -5,128 +5,14 @@
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <Configurations>Debug;Debug2018;Debug2019;Debug2020;Debug2021;Debug2022;Debug2023;Debug2024;Release;Release2018;Release2018Internal;Release2019;Release2019Internal;Release2020;Release2020Internal;Release2021;Release2021Internal;Release2022;Release2022Internal;Release2023;Release2024</Configurations>
-    <TargetFrameworks>netstandard2.0;net8.0-windows</TargetFrameworks>
+    <Configurations>Debug2025;Release2025</Configurations>
+    <TargetFrameworks>net8.0-windows</TargetFrameworks>
   </PropertyGroup>
   <PropertyGroup />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2018|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug2018\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2018</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2019|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug2019\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2019</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2020|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug2020\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2020</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2018|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2018\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2018</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2019|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2019\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2019</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2020|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2020\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2020</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2018Internal|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2018Internal\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2018</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2019Internal|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2019Internal\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2019</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2020Internal|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2020Internal\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2020</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2021|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug2021\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2021</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2021|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2021\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2021</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2021Internal|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2021Internal\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2021</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2022|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug2022\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2022</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2022|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2022\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2022</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2022Internal|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2022Internal\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2022</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2023|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug2023\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2023</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2024|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug2024\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2024</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug2025|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\Debug2025\</OutputPath>
     <DefineConstants>TRACE;DEBUG;R2025</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2023|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2023\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2023</DefineConstants>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2024|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Release2024\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;R2024</DefineConstants>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release2025|AnyCPU'">
@@ -136,175 +22,25 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ReachFramework" />
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
+	<Reference Include="ReachFramework">
+		<HintPath>C:\Program Files\dotnet\packs\Microsoft.WindowsDesktop.App.Ref\8.0.16\ref\net8.0\ReachFramework.dll</HintPath>
+	</Reference>
+    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2025'">
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2018'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2019'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2020'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2021'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2022'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2023'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2023\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Debug2024'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2018'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2019'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2020'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2021'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2022'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2023'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2023\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2024'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2018'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2018Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2019'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2019Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2020'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2021'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2022'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2023'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2023\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2024'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2020Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2021Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2022Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2018'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2018Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2018\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2019'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2019Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2019\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2020'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2021'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2022'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2023'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2023\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2024'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2024\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2020Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2021Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2022Internal'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2022\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
+	<Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Debug2025'">
+		<HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
+		<Private>False</Private>
+	</Reference>
+	<Reference Include="RevitAPI" Condition="'$(Configuration)' == 'Release2025'">
+		<HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
+		<Private>False</Private>
+	</Reference>
+	<Reference Include="RevitAPIUI" Condition="'$(Configuration)' == 'Release2025'">
+		<HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
+		<Private>False</Private>
+	</Reference>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
@@ -313,121 +49,41 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="OxyPlot.Core" Version="2.0.0" />
-    <PackageReference Include="OxyPlot.Wpf" Version="2.0.0" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.0.0">
+      <GeneratePathProperty>True</GeneratePathProperty>
+    </PackageReference>
   </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>if $(ConfigurationName) == Debug2018 (
-rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2018\Beacon"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2018\Beacon.addin"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2018\EC.Beacon.addin"
-md "C:\ProgramData\Autodesk\Revit\Addins\2018\Beacon"
-copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2018\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2018"
-)
-if $(ConfigurationName) == Debug2019 (
-rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2019\Beacon"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2019\Beacon.addin"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2019\EC.Beacon.addin"
-md "C:\ProgramData\Autodesk\Revit\Addins\2019\Beacon"
-copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2019\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2019"
-)
-if $(ConfigurationName) == Debug2020 (
-rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2020\Beacon"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2020\Beacon.addin"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2020\EC.Beacon.addin"
-md "C:\ProgramData\Autodesk\Revit\Addins\2020\Beacon"
-copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2020\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2020"
-)
-if $(ConfigurationName) == Debug2021 (
-rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2021\Beacon"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2021\Beacon.addin"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2021\EC.Beacon.addin"
-md "C:\ProgramData\Autodesk\Revit\Addins\2021\Beacon"
-copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2021\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2021"
-)
-if $(ConfigurationName) == Debug2022 (
-rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2022\Beacon"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2022\Beacon.addin"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2022\EC.Beacon.addin"
-md "C:\ProgramData\Autodesk\Revit\Addins\2022\Beacon"
-copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2022\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2022"
-)
-if $(ConfigurationName) == Debug2023 (
-rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2023\Beacon"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2023\Beacon.addin"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2023\EC.Beacon.addin"
-md "C:\ProgramData\Autodesk\Revit\Addins\2023\Beacon"
-copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2023\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2023"
-)
-if $(ConfigurationName) == Debug2024 (
-rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2024\Beacon"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2024\Beacon.addin"
-del /q "C:\ProgramData\Autodesk\Revit\Addins\2024\EC.Beacon.addin"
-md "C:\ProgramData\Autodesk\Revit\Addins\2024\Beacon"
-copy "$(TargetDir)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2024\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "C:\ProgramData\Autodesk\Revit\Addins\2024"
-)
+	<ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+	<PropertyGroup>
+	  <PostBuildEvent>
+		  if $(Configuration) == Debug2025 (
+		  rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore"
+		  del /q "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore.addin"
+		  del /q "C:\ProgramData\Autodesk\Revit\Addins\2025\EC.BeaconCore.addin"
+		  md "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore"
+		  copy "$(MSBuildProjectDirectory)\$(OutputPath)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore"
+		  copy "$(MSBuildProjectDirectory)\EC.BeaconCore.addin" "C:\ProgramData\Autodesk\Revit\Addins\2025"
+		  copy "$(PkgMyNativeLib)\newtonsoft.json\13.0.3\lib\net6.0\Newtonsoft.Json.dll" "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore"
+		  )
 
-if $(ConfigurationName) == Release2018 (
-del /q "$(SolutionDir)Deployment\Revit2018\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2018\Beacon"
-)
-if $(ConfigurationName) == Release2019 (
-del /q "$(SolutionDir)Deployment\Revit2019\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2019\Beacon"
-)
-if $(ConfigurationName) == Release2020 (
-del /q "$(SolutionDir)Deployment\Revit2020\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2020\Beacon"
-)
-if $(ConfigurationName) == Release2021 (
-del /q "$(SolutionDir)Deployment\Revit2021\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2021\Beacon"
-)
-if $(ConfigurationName) == Release2022 (
-del /q "$(SolutionDir)Deployment\Revit2022\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2022\Beacon"
-)
-if $(ConfigurationName) == Release2023 (
-del /q "$(SolutionDir)Deployment\Revit2023\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2023\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "$(SolutionDir)Deployment\Revit2023"
-)
-if $(ConfigurationName) == Release2024 (
-del /q "$(SolutionDir)Deployment\Revit2024\Beacon\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2024\Beacon"
-copy "$(ProjectDir)EC.Beacon.addin" "$(SolutionDir)Deployment\Revit2024"
-)
+		  if $(Configuration) == Release2025 (
+		  del /q "$(SolutionDir)Deployment\Revit2025\BeaconCore\*"
+		  copy "$(MSBuildProjectDirectory)\$(OutputPath)*.dll" "$(SolutionDir)Deployment\Revit2025\BeaconCore"
+		  copy "$(MSBuildProjectDirectory)\EC.BeaconCore.addin" "$(SolutionDir)Deployment\Revit2025"
+		  )
+	  </PostBuildEvent>
 
-if $(ConfigurationName) == Release2018Internal (
-if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
-del /q "$(SolutionDir)Deployment\Revit2018\BeaconInternal\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2018\BeaconInternal"
-)
-if $(ConfigurationName) == Release2019Internal (
-if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
-del /q "$(SolutionDir)Deployment\Revit2019\BeaconInternal\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2019\BeaconInternal"
-)
-if $(ConfigurationName) == Release2020Internal (
-if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
-del /q "$(SolutionDir)Deployment\Revit2020\BeaconInternal\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2020\BeaconInternal"
-)
-if $(ConfigurationName) == Release2021Internal (
-if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
-del /q "$(SolutionDir)Deployment\Revit2021\BeaconInternal\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2021\BeaconInternal"
-)
-if $(ConfigurationName) == Release2022Internal (
-if exist $(SolutionDir)..\TTCore_digicert_2021.pfx ("C:\Program Files (x86)\Microsoft SDKs\ClickOnce\SignTool\signtool.exe" sign /fd SHA256 /f $(SolutionDir)..\TTCore_digicert_2021.pfx /p dc2021@csTT!YVR $(TargetPath))
-del /q "$(SolutionDir)Deployment\Revit2022\BeaconInternal\*"
-copy "$(TargetDir)*.dll" "$(SolutionDir)Deployment\Revit2022\BeaconInternal"
-)</PostBuildEvent>
   </PropertyGroup>
 </Project>
