@@ -67,23 +67,6 @@
     </None>
   </ItemGroup>
 	<PropertyGroup>
-	  <PostBuildEvent>
-		  if $(Configuration) == Debug2025 (
-		  rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore"
-		  del /q "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore.addin"
-		  del /q "C:\ProgramData\Autodesk\Revit\Addins\2025\EC.BeaconCore.addin"
-		  md "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore"
-		  copy "$(MSBuildProjectDirectory)\$(OutputPath)*.*" "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore"
-		  copy "$(MSBuildProjectDirectory)\EC.BeaconCore.addin" "C:\ProgramData\Autodesk\Revit\Addins\2025"
-		  copy "$(PkgMyNativeLib)\newtonsoft.json\13.0.3\lib\net6.0\Newtonsoft.Json.dll" "C:\ProgramData\Autodesk\Revit\Addins\2025\BeaconCore"
-		  )
-
-		  if $(Configuration) == Release2025 (
-		  del /q "$(SolutionDir)Deployment\Revit2025\BeaconCore\*"
-		  copy "$(MSBuildProjectDirectory)\$(OutputPath)*.dll" "$(SolutionDir)Deployment\Revit2025\BeaconCore"
-		  copy "$(MSBuildProjectDirectory)\EC.BeaconCore.addin" "$(SolutionDir)Deployment\Revit2025"
-		  )
-	  </PostBuildEvent>
-
-  </PropertyGroup>
+	  <Product>$(AssemblyName)</Product>
+	</PropertyGroup>
 </Project>
