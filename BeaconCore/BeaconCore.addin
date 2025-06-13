@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Assembly>BeaconCore\BeaconCore.dll</Assembly>
+    <ClientId>E3E69830-E208-4F44-B044-1DD8109EB30D</ClientId>
+    <FullClassName>Beacon.App</FullClassName>
+    <Name>Beacon Embodied Carbon</Name>
+    <VendorId>BECN</VendorId>
+    <VendorDescription>Beacon</VendorDescription>	  
+  </AddIn>
+</RevitAddIns>
