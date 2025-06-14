@@ -48,4 +48,12 @@ IF EXIST "C:\ProgramData\Autodesk\Revit\Addins\2024" (
 	copy /y Revit2024 C:\ProgramData\Autodesk\Revit\Addins\2024
 	copy /y Revit2024\Beacon C:\ProgramData\Autodesk\Revit\Addins\2024\Beacon
 )
+IF EXIST "C:\ProgramData\Autodesk\Revit\Addins\2025" (
+        rd /s /q "C:\ProgramData\Autodesk\Revit\Addins\2025\Beacon"
+	del /q "C:\ProgramData\Autodesk\Revit\Addins\2025\Beacon.addin"
+	md "C:\ProgramData\Autodesk\Revit\Addins\2025\Beacon"
+	copy /y Revit2025 C:\ProgramData\Autodesk\Revit\Addins\2025
+	copy /y Revit2025\Beacon C:\ProgramData\Autodesk\Revit\Addins\2025\Beacon
+)
+
 pause

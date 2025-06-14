@@ -1,0 +1,47 @@
+<Window x:Class="Beacon.DataGridUI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Beacon"
+             mc:Ignorable="d" 
+             Title="Beacon" Height="800" Width="1400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Column="0" Grid.Row="0" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition Height="95*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Name="DataGridUILabel" Content="Detail Elements" FontWeight="Bold" HorizontalAlignment="Left" Margin="5,0,0,0" VerticalAlignment="Bottom" Height="26" />
+            <Button Grid.Row="0" Name="SaveDetailElementsButton" Content="Download" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Center" Width="75" Height="20" Click="SaveDetailElementsButton_Click" />
+            <DataGrid Grid.Row="1" Margin="10" Name="DetailElementsDataGrid" AutoGenerateColumns="False" Background="White" GridLinesVisibility="None" ColumnWidth="*" HeadersVisibility="Column">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="AssociatedLevel" Binding="{Binding AssociatedLevel}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Volume Factor" Binding="{Binding VolumeFactor, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Factored Volume (CF)" Binding="{Binding FactoredVolume, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Density (PCF)" Binding="{Binding Density, StringFormat=N2}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Factored Weight (LB)" Binding="{Binding FactoredWeight, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Area (SF)" Binding="{Binding Area, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Material" Binding="{Binding Material}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="MaterialName" Binding="{Binding MaterialName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="GwpType" Binding="{Binding GwpType}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Gwp" Binding="{Binding Gwp, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="GwpUnit" Binding="{Binding GwpUnit}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="EmbodiedCarbon (KG CO2e)" Binding="{Binding EmbodiedCarbon, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="RebarMultiplier" Binding="{Binding RebarMultiplier}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="RebarMultiplierUnit" Binding="{Binding RebarMultiplierUnit}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="RebarWeight (LB)" Binding="{Binding RebarWeight, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="RebarGwp (KG CO2e/SHORT TON)" Binding="{Binding RebarGwp, StringFormat=N2}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="RebarEmbodiedCarbon (KG CO2e)" Binding="{Binding RebarEmbodiedCarbon, StringFormat=N2}" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</Window>
