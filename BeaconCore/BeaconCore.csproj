@@ -101,6 +101,6 @@
     <Product>Beacon</Product>
     <Description></Description>
     <PackageId>Beacon</PackageId>
-    <AssemblyName>BeaconCore</AssemblyName>
+    <AssemblyName>Beacon</AssemblyName>
   </PropertyGroup>
 </Project>
